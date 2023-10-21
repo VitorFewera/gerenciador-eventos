@@ -1,0 +1,35 @@
+@import "src/themes/generated/variables.base.scss";
+.form-avatar {
+  float: left;
+  height: 100%;
+  width: 100%;
+  max-width: 300px;
+  max-height: 500px;
+  margin-right: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 80px;
+
+  img {
+    max-height: 120%;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+    vertical-align: middle;
+    border-radius: 80px;
+  }
+}
+
+
+
+:host {
+  display: block;
+  color: rgba($base-text-color, alpha($base-text-color) * 0.7);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
+

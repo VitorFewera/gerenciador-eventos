@@ -1,0 +1,102 @@
+<div class="long-title mt-3">
+  <h3>Novo Evento</h3>
+</div>
+
+<div class="content-block dx-card responsive-paddings shadow">
+  <div id="form-container">
+    <dx-form id="form" [colCount]="2" [labelMode]="labelMode">
+      <dxi-item
+        dataField="id"
+        [editorOptions]="{ disabled: false, value:''}"
+      ></dxi-item>
+      <dxi-item
+        dataField="name"
+        label='nome'
+      >    <!--[editorOptions]="{ disabled: false, value:''}"-->
+        <dx-text-box [(value)]="evento.name"></dx-text-box>
+      </dxi-item>
+
+      <dxi-item
+        dataField="tipoEvento"
+        capiton="Tipo do Evento"
+        [editorOptions]="{ items: tiposEventos, searchEnabled: true, value: '' }"
+      >
+        <dxi-validation-rule
+          type="required"
+          message="Informe o tipo de evento!"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item
+        dataField="dataEvento"
+        editorType="dxDateBox"
+        [editorOptions]="{ value:evento.dataEvento, width: '100%' }">
+        <dx-text-box [(value)]="evento.dataEvento"></dx-text-box>
+        <dxi-validation-rule
+          type="required"
+          message="Informe uma data para o evento."
+        ></dxi-validation-rule>
+      </dxi-item>
+
+      <dxi-item dataField="Endereco do Evento">
+        <dx-text-box [(value)]="evento.enderecoEvento"></dx-text-box>
+      </dxi-item>
+
+      <dxi-item
+        dataField="liberadoEvento"
+        editorType="dxSelectBox"
+        [editorOptions]="{ items: participanteEventos, searchEnabled: true, value: ''}"
+
+      >
+        <dxi-validation-rule
+          type="required"
+          message="Informe o tipo de evento!"
+        ></dxi-validation-rule>
+      </dxi-item>
+
+    </dx-form>
+
+    <br>
+
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="acompanhante">Permitir acompanhantes ?</label>
+      <input class="form-check-input" type="checkbox" role="switch" id="acompanhante" name="acompanhante1">
+    </div>
+
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="doacao">Permitir Doações ?</label>
+      <input class="form-check-input" type="checkbox" role="switch" id="doacao" name="doacao1">
+    </div>
+
+    <div class="form-check form-switch">
+      <label class="form-check-label" for="example">Outro exemplo desse botão ?</label>
+      <input class="form-check-input " type="checkbox" role="switch" id="example">
+    </div>
+
+    <div class="buttons-demo">
+      <div class="container">
+        <div class="buttons-column row justify-content-end">
+          <div class="m-2 dx-button-default dx-button-text col-2">
+            <dx-button
+              stylingMode="contained"
+              text="Salvar"
+              type="normal"
+              [width]="120"
+              (onClick)="cadastroEvento()">
+            </dx-button>
+          </div>
+
+          <div class="m-2 col-2">
+            <dx-button
+              stylingMode="contained"
+              text="Fechar"
+              type="normal"
+              [width]="120">
+              <!--(onClick)="click($event)"-->
+            </dx-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

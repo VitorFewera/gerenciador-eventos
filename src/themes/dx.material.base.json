@@ -1,0 +1,16 @@
+{
+    "items": [
+        {
+            "key": "$base-accent",
+            "value": "rgba(0, 96, 96, 1)"
+        }
+    ],
+    "baseTheme": "material.teal.light",
+    "assetsBasePath": "../../../node_modules/devextreme/dist/css/",
+    "outputColorScheme": "base",
+    "base": true,
+    "makeSwatch": false,
+    "version": "21.2.5",
+    "widgets": [],
+    "removeExternalResources": false
+}

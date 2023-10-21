@@ -1,0 +1,25 @@
+
+{
+  "eventos": [
+     {
+      "id": 1,
+      "name": "Churrasco teste 1",
+      "tipoEvento": "Churrasco",
+      "dataEvento": "10-12-2022",
+      "enderecoEvento": "Alojamneto Fiorilli",
+
+      "liberadoEvento": "Todos os setores"
+
+    },
+    {
+      "id": 2,
+      "name": "Churrasco teste 2",
+      "tipoEvento": "Churrasco",
+      "dataEvento": "11-12-2022",
+      "enderecoEvento": "Alojamneto Fiorilli",
+      "liberadoEvento": "Todos os setores"
+
+    }
+
+  ]
+}

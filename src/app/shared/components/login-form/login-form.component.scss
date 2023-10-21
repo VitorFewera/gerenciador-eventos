@@ -1,0 +1,31 @@
+@import "../../../../themes/generated/variables.base.scss";
+
+
+.login-form {
+  .link {
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  ::ng-deep .form-text {
+    margin: 10px 0;
+    color: rgba($base-text-color, alpha($base-text-color) * 0.7);
+  }
+}
+
+dxi-item{
+  height: 50%;
+  width: 100%;
+  margin: -30px 0 0 76px;
+}
+
+.esqueceu-senha{
+  font-size: 10px;
+}
+
+

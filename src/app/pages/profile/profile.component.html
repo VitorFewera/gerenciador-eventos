@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-around">
+  <h2>Perfil</h2>
+</div>
+
+<div class="container">
+  <div class="content-block dx-card responsive-paddings row">
+    <div class="row justify-content-md-center">
+      <div class="form-avatar row">
+        <img class="img-fluid" src="{{user}}"/>
+      </div>
+      <br>
+    </div>
+    <div class="col">
+      <dx-form id="form"
+               [formData]="user"
+               labelLocation="top"
+               [colCountByScreen]="colCountByScreen"
+      >
+      </dx-form>
+    </div>
+  </div>
+
+</div>
