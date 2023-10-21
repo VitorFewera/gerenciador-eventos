@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NewEventComponent } from './pages/new-event/new-event.component';
 import {
     DxButtonModule,
-    DxCheckBoxModule,
+    DxCheckBoxModule, DxDateBoxModule,
     DxFormModule,
     DxNumberBoxModule,
     DxSelectBoxModule, DxTextBoxModule,
@@ -50,7 +50,8 @@ import {FormsModule} from "@angular/forms";
         BrowserAnimationsModule,
         HttpClientModule,
         FormsModule,
-        DxTextBoxModule
+        DxTextBoxModule,
+        DxDateBoxModule
     ],
   providers: [
     AuthService,

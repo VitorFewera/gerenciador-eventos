@@ -12,7 +12,7 @@ export class NewEventServiceAPI{
   private apiREST: string = 'http://localhost:3000/eventos' ;
 
   constructor(private httpClient:HttpClient) {
-    //this.apiREST = 'http://localhost:3000/eventos';
+
   }
   //teste api
   retornoEvento(): Observable<EventsModel[]>{
@@ -25,31 +25,9 @@ export class NewEventServiceAPI{
 }
 
 
-const tipoEvento : string[] = [
-  'Churrasco',
-  'Corporativo',
-  'Opção para adicionar',
-  'Por configuração que ',
-  'vou adicionar depois',
-];
-
-const participantesEventos : string[] = [
-  'Aberto para o setor',
-  'Aberto para o Alojamento',
-  'Aberto para todos os setores',
-  'Institucional',
-  'vou adicionar depois',
-];
-
 @Injectable()
 export class Service {
-  getTipoEvento() : string[] {
-    return tipoEvento;
-  }
 
-  getParticipantesEventos(): string[]{
-    return participantesEventos;
-  }
 
 }
 

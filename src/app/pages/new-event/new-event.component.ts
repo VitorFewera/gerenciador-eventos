@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
 import {DxFormComponent} from "devextreme-angular";
 import DevExpress from "devextreme";
@@ -15,66 +15,68 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 })
 
 
-export class NewEventComponent {
-  @ViewChild(DxFormComponent, {static: false}) myform: DxFormComponent;
-
-  eventService: NewEventServiceAPI;
-
-  tiposEventos: string[];
-
-  participanteEventos: string[];
-
-  rules: Object;
-
-  labelMode: string;
-
-  evento: EventsModel;
-
-
-  constructor(eventService: Service, private router: Router) {
-    this.participanteEventos = eventService.getParticipantesEventos();
-    // this.eventService = eventService.getNewEventService();
-    this.tiposEventos = eventService.getTipoEvento();
-    this.rules = {X: /[02-9]/};
-    this.labelMode = 'floating';
- }
- /*
-   id: number = 0;
-  nameEvento: string = '';
-  tipoEvento: string = '';
-  dataEvento: string = '';
-  enderecoEvento: string = '';
-  liberadoEvento: string = '';
-  acompanhanteEvento: boolean = false;
-  doacaoEvento: boolean = false;
-
-  evento: EventsModel = {
-    id: this.id,
-    name: this.nameEvento,
-    tipoEvento: this.tipoEvento,
-    dataEvento: this.dataEvento,
-    enderecoEvento: this.enderecoEvento,
-    liberadoEvento: this.liberadoEvento,
-    acompanhanteEvento: this.acompanhanteEvento,
-    doacaoEvento: this.doacaoEvento,
-  }
-*/
-
-  cadastroEvento(): void {
-    console.log(this.evento);
-    this.eventService.cadastroEvento(this.evento).subscribe({
-        next: resultado => console.log('PASSOU', resultado),
-        error: err => console.error('erro',err),
-      });
-  }
+export class NewEventComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit() {
     this.myform.instance.validate();
   }
 
   ngOnInit(): void {
-   // this.evento.acompanhanteEvento = false;
-  //  this.evento.doacaoEvento = false;
+
+  }
+
+  ngOnDestroy() {
+    this.limpar();
+  }
+
+  @ViewChild(DxFormComponent, {static: false}) myform: DxFormComponent;
+
+  eventService: NewEventServiceAPI;
+
+  tiposEventos = [
+    {id: 1, name: "tipo1"},
+    {id: 1, name: "tipo2"},
+    {id: 1, name: "tipo3"}
+  ];
+
+  participantesEventos = [
+    {id: 1, name: 'Aberto para o setor'},
+    {id: 2, name: 'Aberto para o Alojamento'},
+    {id: 3, name: 'Aberto para todos os setores'},
+    {id: 4, name: 'Institucional'},
+    {id: 5, name: 'vou adicionar depois'}
+  ];
+
+  rules: Object;
+
+  labelMode: string;
+
+  evento = new EventsModel();
+
+
+  constructor(eventService: Service, private router: Router) {
+    this.rules = {X: /[02-9]/};
+    this.labelMode = 'floating';
+  }
+
+  cadastroEvento(evento: EventsModel) {
+    console.log(evento);
+    this.eventService.cadastroEvento(evento).subscribe(
+      () => {
+        console.log('PASSOU', evento);
+        this.router.navigate(['/home']);
+      });
+  }
+
+  sair() {
+    this.router.navigate(['/home'])
+  }
+
+  limpar(){
+    this.evento.nomeEvento = '';
+    this.evento.enderecoEvento = '';
+    this.evento.tipoEvento = null;
+    this.evento.dataEvento = '';
   }
 
 }

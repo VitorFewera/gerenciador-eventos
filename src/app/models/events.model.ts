@@ -1,12 +1,9 @@
 export class EventsModel {
   id:number;
-  name: string;
-  tipoEvento: string;
-  dataEvento: string;
+  nomeEvento: string;
+  tipoEvento: any;
+  dataEvento: any;
   enderecoEvento: string;
-  liberadoEvento: string;
-  //acompanhanteEvento: boolean;
-  //doacaoEvento: boolean;
 }
 
 export class RootObject {
