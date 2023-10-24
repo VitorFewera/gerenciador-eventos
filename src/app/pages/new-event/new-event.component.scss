@@ -9,3 +9,26 @@
   text-align: center;
   margin-bottom: 20px;
 }
+
+.lineButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 3%;
+}
+
+dx-button{
+  margin: 1%;
+}
+
+.fechar{
+  background-color: white;
+  color: black;
+  box-shadow: black;
+}
+
+.limpar{
+  background-color: #EAEAEA;
+  color: #626262;
+  box-shadow: black;
+}

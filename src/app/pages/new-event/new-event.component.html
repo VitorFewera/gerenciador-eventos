@@ -1,5 +1,3 @@
-
-
 <div class="content-block dx-card responsive-paddings shadow">
   <div class="long-title mb-5">
     <h3>Novo Evento</h3>
@@ -25,9 +23,14 @@
         <dxi-validation-rule type="required" message="Informe o tipo do evento."></dxi-validation-rule>
       </dxi-item>
 
-      <dxi-item dataField="dataEvento" editorType="dxDateBox" [editorOptions]="{format: 'dd/MM/yyyy', mask:'99/99/9999',
-       useMaskedValue: true}" >
-        <dx-date-box [(value)]="evento.dataEvento"></dx-date-box>
+      <dxi-item dataField="dateEvento">
+        <dx-date-box [(value)]="evento.dataEvento"
+                     [useMaskBehavior]="true"
+                     [displayFormat]="'dd/MM/yyyy'"
+                     label="Data do Evento"
+                     type="date"
+
+        ></dx-date-box>
         <dxi-validation-rule type="required" message="Informe uma data para o evento."></dxi-validation-rule>
       </dxi-item>
 
@@ -37,45 +40,37 @@
         <dxi-validation-rule type="required" message="Informe endereço do evento."></dxi-validation-rule>
       </dxi-item>
 
-      </dx-form>
+    </dx-form>
 
 
-
-
-    <div class="buttons-demo">
+    <div class="buttons-demo mt-3">
       <div class="container">
-        <div class="buttons-column row justify-content-end">
-          <div class="m-2 dx-button-default dx-button-text col-2">
-            <dx-button
-              stylingMode="contained"
-              text="Salvar"
-              type="normal"
-              [width]="120"
-              (click)="cadastroEvento(evento)">
-            </dx-button>
-          </div>
-
-          <div class="m-2 col-2">
-            <dx-button
-              stylingMode="contained"
-              text="Fechar"
-              type="normal"
-              [width]="120"
-              (click)="sair()">
-            </dx-button>
-          </div>
-
-          <div class="m-2 col-2">
-            <dx-button
-              stylingMode="contained"
-              text="Limpar"
-              type="normal"
-              [width]="120"
-              (click)="limpar()">
-            </dx-button>
-          </div>
+        <div class="buttons-column lineButton">
 
 
+          <dx-button
+            stylingMode="contained"
+            text="Salvar"
+            type="default"
+            [width]="200"
+            (click)="cadastroEvento(evento)">
+          </dx-button>
+
+
+          <dx-button class="limpar"
+                     text="Limpar"
+                     type="text"
+                     [width]="200"
+                     (click)="limpar()">
+          </dx-button>
+
+
+          <dx-button class="fechar"
+                     text="Fechar"
+                     type="text"
+                     [width]="200"
+                     (click)="sair()">
+          </dx-button>
         </div>
       </div>
     </div>

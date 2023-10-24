@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
 import {DxFormComponent} from "devextreme-angular";
-import DevExpress from "devextreme";
-import data = DevExpress.data;
 import {EventsModel} from "../../models/events.model";
 import {Router} from "@angular/router";
-import {error} from "@angular/compiler-cli/src/transformers/util";
+import {DateUtils} from "../../shared/pipe/date-utils";
+
 
 @Component({
   selector: 'app-new-event',
@@ -16,6 +15,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
 
 
 export class NewEventComponent implements OnInit, OnDestroy {
+
 
   ngAfterViewInit() {
     this.myform.instance.validate();
@@ -57,9 +57,12 @@ export class NewEventComponent implements OnInit, OnDestroy {
   constructor(eventService: Service, private router: Router) {
     this.rules = {X: /[02-9]/};
     this.labelMode = 'floating';
+
   }
 
   cadastroEvento(evento: EventsModel) {
+    evento.dataEvento = new Date(evento.dataEvento);
+    evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
     console.log(evento);
     this.eventService.cadastroEvento(evento).subscribe(
       () => {
@@ -76,7 +79,7 @@ export class NewEventComponent implements OnInit, OnDestroy {
     this.evento.nomeEvento = '';
     this.evento.enderecoEvento = '';
     this.evento.tipoEvento = null;
-    this.evento.dataEvento = '';
+    this.evento.dataEvento = null;
   }
 
 }

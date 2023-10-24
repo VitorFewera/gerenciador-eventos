@@ -21,13 +21,18 @@ import { AdmEventComponent } from './pages/adm-event/adm-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
     AppComponent,
     NewEventComponent,
     EventManagerComponent,
-    AdmEventComponent
+    AdmEventComponent,
   ],
     imports: [
         BrowserModule,
@@ -56,7 +61,8 @@ import {FormsModule} from "@angular/forms";
   providers: [
     AuthService,
     ScreenService,
-    AppInfoService
+    AppInfoService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })

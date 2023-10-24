@@ -2,7 +2,7 @@ export class EventsModel {
   id:number;
   nomeEvento: string;
   tipoEvento: any;
-  dataEvento: any;
+  dataEvento: Date;
   enderecoEvento: string;
 }
 
