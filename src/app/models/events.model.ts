@@ -2,10 +2,17 @@ export class EventsModel {
   id:number;
   nomeEvento: string;
   tipoEvento: any;
-  dataEvento: Date;
+  //tipoEvento: <Array,(TipoEvento)>;
+  dataEvento: any;
   enderecoEvento: string;
+
+ /*constructor() {
+    //this.tipoEvento = new Array(TipoEvento)
+  }*/
 }
 
+/*
 export class RootObject {
    eventos: EventsModel[];
 }
+*/

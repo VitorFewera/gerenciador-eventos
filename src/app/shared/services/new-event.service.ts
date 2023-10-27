@@ -19,16 +19,16 @@ export class NewEventServiceAPI{
     return this.httpClient.get<EventsModel[]>(this.apiREST);
   }
 
-  cadastroEvento(evento: EventsModel): Observable<EventsModel>{
-    return this.httpClient.post<EventsModel>(this.apiREST, evento);
+  cadastroEvento(evento: EventsModel): Observable<any>{
+    console.log('to aqui', evento)
+    return this.httpClient.post<any>(this.apiREST, evento);
   }
 }
 
 
 @Injectable()
 export class Service {
-
-
+  providedIn: 'root'
 }
 
 
