@@ -1,66 +1,41 @@
 import {Component, OnInit} from '@angular/core';
-import { NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
+import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
 
 import {RouterModule} from "@angular/router";
 import {EventsModel} from "../../models/events.model";
 
 @Component({
   templateUrl: 'home.component.html',
-  providers:[NewEventServiceAPI, Service],
-  styleUrls: [ './home.component.scss' ]
+  providers: [NewEventServiceAPI, Service],
+  styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
 
-  cardEvento: EventsModel  ;
-
-  certezaMostrarEvento: EventsModel[] = [];
+  cardEvento: EventsModel;
 
   mostrarEvento: EventsModel[] = [];
 
-  popupVisible = false;
-
   participarEvento: any;
 
-  positionOf: string;
+  tipo: number;
 
-  constructor(private service: NewEventServiceAPI) {
+  constructor(private service: NewEventServiceAPI, private router: RouterModule) {
 
     let participar: boolean = false;
     this.participarEvento = {
       text: 'Participar',
-      onClick(e){
+      onClick(e) {
         return participar = true;
-        //this.router.navigate(['/event-manager']);
       }
     }
   }
 
-
-  ngOnInit():void {
-    this.service.retornoEvento().subscribe((evento: EventsModel[]) =>
-    { console.log(evento); this.mostrarEvento = evento
-    })}
-
-/*
-  retornoEvento(): void{
-  this.service.retornoEvento().subscribe({
-    next: evento => {
-        this.mostrarEvento = evento;
-        this.certezaMostrarEvento = this.mostrarEvento;
-    },
-    error:err => console.log(err)
-  });
-  }*/
-
-
-
-
-  showInfo(evento) {
-    this.cardEvento = evento;
-    this.popupVisible = true;
+  ngOnInit(): void {
+    this.service.retornoEvento().subscribe((evento: EventsModel[]) => {
+      console.log(evento);
+      this.mostrarEvento = evento
+    })
   }
-
-
 
 }

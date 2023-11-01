@@ -1,67 +1,18 @@
 {
   "eventos": [
     {
-      "id": 1,
-      "nomeEvento": "Churrasco teste 1",
-      "tipoEvento": "Churrasco",
-      "dataEvento": "10-12-2022",
-      "enderecoEvento": "Alojamneto Fiorilli"
-    },
-    {
-      "id": 2,
-      "nomeEvento": "Churrasco teste 2",
-      "tipoEvento": "Churrasco",
-      "dataEvento": "11-12-2022",
-      "enderecoEvento": "Alojamneto Fiorilli"
-    },
-    {
-      "nomeEvento": "dasdasd",
-      "dataEvento": "26/10/2023",
-      "tipoEvento": 3,
-      "enderecoEvento": "dasdas",
-      "id": 3
-    },
-    {
-      "nomeEvento": "dasdasd",
-      "dataEvento": "26/10/2023",
-      "tipoEvento": [],
-      "enderecoEvento": "dasdas",
-      "id": 4
-    },
-    {
-      "nomeEvento": "dasdas",
-      "tipoEvento": 2,
-      "dataEvento": "26/10/2023",
-      "enderecoEvento": "dasdas",
-      "id": 5
-    },
-    {
-      "nomeEvento": "teste juliano",
-      "tipoEvento": 3,
-      "dataEvento": "26/10/2023",
-      "enderecoEvento": "dadas",
-      "id": 6
-    },
-    {
-      "nomeEvento": "teste juliano 2",
-      "tipoEvento": 3,
-      "dataEvento": "26/10/2023",
+      "nomeEvento": "Churrasco",
       "enderecoEvento": "teste",
-      "id": 7
-    },
-    {
-      "nomeEvento": "dasd",
       "tipoEvento": 2,
-      "dataEvento": "26/10/2023",
-      "enderecoEvento": "dasdas",
-      "id": 8
+      "dataEvento": "02/10/2023",
+      "id": 1
     },
     {
-      "nomeEvento": "dasdas",
-      "tipoEvento": 3,
-      "dataEvento": "26/10/2023",
-      "enderecoEvento": "dasd",
-      "id": 9
+      "nomeEvento": "teste",
+      "enderecoEvento": "teste",
+      "tipoEvento": 1,
+      "dataEvento": "04/10/2023",
+      "id": 2
     }
   ]
 }

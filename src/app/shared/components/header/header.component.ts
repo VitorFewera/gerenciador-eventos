@@ -26,14 +26,14 @@ export class HeaderComponent implements OnInit {
   user: IUser | null = { email: '' };
 
   userMenuItems = [{
-    text: 'Profile',
+    text: 'Perfil',
     icon: 'user',
     onClick: () => {
       this.router.navigate(['/profile']);
     }
   },
   {
-    text: 'Logout',
+    text: 'Sair',
     icon: 'runner',
     onClick: () => {
       this.authService.logOut();

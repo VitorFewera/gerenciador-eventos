@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
-import {DxFormComponent} from "devextreme-angular";
+import {DxFormComponent, DxValidatorComponent} from "devextreme-angular";
 import {EventsModel} from "../../models/events.model";
 import {Router} from "@angular/router";
 import {DateUtils} from "../../shared/pipe/date-utils";
@@ -13,24 +13,23 @@ import {DateUtils} from "../../shared/pipe/date-utils";
 })
 
 
-export class NewEventComponent implements OnDestroy {
+export class NewEventComponent implements OnDestroy, OnInit {
+
+  ngOnInit() {
+    this.limpar();
+  }
 
   constructor(private newEventServiceAPI: NewEventServiceAPI, private router: Router) {
     this.rules = {X: /[02-9]/};
     this.labelMode = 'floating';
 
   }
-
-
-  ngAfterViewInit() {
-    this.myform.instance.validate();
-  }
-
   ngOnDestroy() {
     this.limpar();
   }
 
   @ViewChild(DxFormComponent, {static: false}) myform: DxFormComponent;
+  @ViewChild('targetValidator', { static: false }) validator: DxValidatorComponent;
 
   eventService: NewEventServiceAPI;
 
@@ -48,10 +47,13 @@ export class NewEventComponent implements OnDestroy {
 
   eventos: Array<EventsModel> = new Array<EventsModel>();
 
+  formData = {};
 
 
   cadastroEvento(evento: EventsModel) {
-    const batatas = new Array<EventsModel>();
+    /*
+    Como é feito na fiorilli, migrar depois
+     const batatas = new Array<EventsModel>();
     const bata = new EventsModel();
     bata.dataEvento = this.evento.dataEvento;
     bata.nomeEvento = this.evento.nomeEvento;
@@ -61,10 +63,14 @@ export class NewEventComponent implements OnDestroy {
     batatas.push(bata);
     console.log('ARRAY AQUI', batatas)
     console.log('obj', bata);
+     */
 
-    //evento.id = 3;
+    //Fazer com que os campo do formulario venha sem validação
+    if (!this.myform.instance.validate().isValid) {
+      return
+    }
+
     evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
-    //console.log('data', evento.dataEvento)
     this.newEventServiceAPI.cadastroEvento(evento).subscribe(
       () => {
         console.log('PASSOU', evento);
@@ -76,7 +82,7 @@ export class NewEventComponent implements OnDestroy {
     this.router.navigate(['/home'])
   }
 
-  limpar(){
+  limpar() {
     this.evento.nomeEvento = '';
     this.evento.enderecoEvento = '';
     this.evento.tipoEvento = null;

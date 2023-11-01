@@ -11,9 +11,8 @@ import {EventsModel} from "../../models/events.model";
 export class NewEventServiceAPI{
   private apiREST: string = 'http://localhost:3000/eventos' ;
 
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient) {}
 
-  }
   //teste api
   retornoEvento(): Observable<EventsModel[]>{
     return this.httpClient.get<EventsModel[]>(this.apiREST);

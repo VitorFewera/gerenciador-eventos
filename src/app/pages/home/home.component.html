@@ -1,87 +1,24 @@
-<h2 class="content-block" xmlns="http://www.w3.org/1999/html">Eventos Abertos</h2>
-<div class="container" *ngFor="let evento of mostrarEvento">
-  <div class="content-block row">
-    <div class="m-0 ">
-      <div class="justify-content-md-center col-4"><!-- *ngFor="let evento of mostrarEvento"-->
-        <button type="button" class="btn m-0 p-0" data-bs-toggle="modal" data-bs-target="exampleModal"> <!--(click)="showInfo(evento)">-->
-          <div class="content-block dx-card responsive-paddings shadow ">
-            <span>{{evento.nomeEvento}}</span><br>
-            <span>{{evento.dataEvento}}</span>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div>
+<h2 class="m-5 justify-content-center">Eventos Abertos</h2>
 
-  <div *ngIf="mostrarEvento.length != 0 else errado">
-   <!-- <dx-popup
-      [width]="650"
-      [height]="500"
-      [showTitle]="true"
-      title="Informações do Evento"
-      [dragEnabled]="false"
-      [hideOnOutsideClick]="true"
-      [showCloseButton]="true"
-      container=".dx-viewport"
-      [(visible)]="popupVisible"
-    >
-      <dxi-toolbar-item
-        widget="dxButton"
-        toolbar="bottom"
-        location="after"
-        [options]="participarEvento"
-      >
-      </dxi-toolbar-item>
-      <dxo-position at="middle" my="center" [of]="positionOf"></dxo-position>
-
-      <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="First">
-          <div *dxTemplate="let data of 'content'">
-            <p>
-              <span>{{ cardEvento.name}}</span>
-            </p>
-            <p>
-              <span>{{ cardEvento.dataEvento }}</span>
-            </p>
-            <p>
-              <span>{{ cardEvento.tipoEvento}}</span>
-            </p>
-            <p>
-              <span>{{ cardEvento.enderecoEvento }}</span>
-            </p>
-            <p>
-              <span>{{ cardEvento.liberadoEvento }}</span>
-            </p>
-          </div>
-        </mat-tab>
-        <mat-tab label="Second">Content 2</mat-tab>
-        <mat-tab label="Third">Content 3</mat-tab>
-      </mat-tab-group>
-    </dx-popup>
-    -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            ...
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+<div class="container flex-column cardEventos">
+  <div *ngFor="let evento of mostrarEvento">
+    <div class="justify-content-md-center">
+      <div class="content-block responsive-paddings shadow rounded-3"
+           [ngClass]="{'tipoUm':evento.tipoEvento == 1, 'tipoDois': evento.tipoEvento == 2}">
+        <div class="textCard">
+          <span>{{evento.nomeEvento}}</span> <br/>
+          <span>{{evento.dataEvento}}</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
+<div *ngIf="mostrarEvento.length != 0 else errado">
+</div>
 <ng-template #errado>
   <h3>
     Nenhum evento Cadastrado
   </h3>
 </ng-template>
+

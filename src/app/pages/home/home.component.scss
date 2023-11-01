@@ -18,3 +18,23 @@
 .selec:hover{
   width: 120%;
 }
+
+$tipoChurrasco: url('/assets/img/tipo1.jpg');
+$tipoDoisChurrasco: url('/assets/img/tipo2.jpg');
+
+.cardEventos{
+  width: 100ch;
+  height: 100ch;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.tipoUm{
+  background-image: $tipoDoisChurrasco;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  }
+
+

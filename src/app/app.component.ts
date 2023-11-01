@@ -11,6 +11,8 @@ export class AppComponent  {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
 
+  linkedin: string = 'https://www.linkedin.com/in/vitor-hugo-lopes-ferreira-524b0923a/';
+
   constructor(private authService: AuthService, private screen: ScreenService, public appInfo: AppInfoService) { }
 
   isAuthenticated() {
