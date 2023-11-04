@@ -1,18 +1,28 @@
 {
   "eventos": [
     {
-      "nomeEvento": "Churrasco",
-      "enderecoEvento": "teste",
-      "tipoEvento": 2,
-      "dataEvento": "02/10/2023",
+      "nomeEvento": "Volei ",
+      "enderecoEvento": "Quadra de volei em Mirassol",
+      "tipoEvento": 1,
+      "dataEvento": "02/11/2023",
+      "descricaoEvento": "Partida de volei, com o pessoal do setor",
       "id": 1
     },
     {
-      "nomeEvento": "teste",
-      "enderecoEvento": "teste",
-      "tipoEvento": 1,
-      "dataEvento": "04/10/2023",
+      "nomeEvento": "Churrasco",
+      "enderecoEvento": "Alojamento Fiorilli",
+      "tipoEvento": 2,
+      "dataEvento": "03/11/2023",
+      "descricaoEvento": "Churrasco do setor  do SIA no alojamento",
       "id": 2
+    },
+    {
+      "nomeEvento": "hambúrguer",
+      "enderecoEvento": "Alojamento da Fiorilli",
+      "tipoEvento": 3,
+      "dataEvento": "04/11/2023",
+      "descricaoEvento": "Fazer hamburger na grelha",
+      "id": 3
     }
   ]
 }

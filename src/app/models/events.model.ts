@@ -4,6 +4,7 @@ export class EventsModel {
   tipoEvento: any;
   dataEvento: any;
   enderecoEvento: string;
+  descricaoEvento: string;
 
 }
 

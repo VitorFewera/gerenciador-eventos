@@ -34,9 +34,9 @@ export class NewEventComponent implements OnDestroy, OnInit {
   eventService: NewEventServiceAPI;
 
   tiposEventos = [
-    {id: 1, name: "tipo1"},
-    {id: 2, name: "tipo2"},
-    {id: 3, name: "tipo3"}
+    {id: 1, name: "Esportes Vôlei/Beach Tennis"},
+    {id: 2, name: "Churrasco"},
+    {id: 3, name: "Diversos"}
   ];
 
   rules: Object;
