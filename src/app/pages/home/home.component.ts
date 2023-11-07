@@ -3,6 +3,7 @@ import {NewEventServiceAPI, Service} from "../../shared/services/new-event.servi
 
 import {Router, RouterModule} from "@angular/router";
 import {EventsModel} from "../../models/events.model";
+import {ParticipantesModel} from "../../models/participantes.model";
 
 @Component({
   templateUrl: 'home.component.html',
@@ -15,35 +16,29 @@ export class HomeComponent implements OnInit {
 
   mostrarEvento: EventsModel[] = [];
 
+  participante: ParticipantesModel = new ParticipantesModel();
+
   participarEvento: any;
 
   tipo: number;
 
   popupVisible = false;
 
-  fecharPopup: any;
+  texto: string = 'Informe seus dados: ';
 
-  constructor(private service: NewEventServiceAPI, private router: Router) {
+  setores = [
+    {id: 1, name: 'SIA'},
+    {id: 2, name: 'SCPI'},
+    {id: 3, name: 'SIP'},
+    {id: 4, name: 'SIE e agregados'},
+    {id: 5, name: 'Juridico'},
+    {id: 6, name: 'Administrativo'},
+    {id: 7, name: 'Limpeza'},
+    {id: 8, name: 'Convidado'},
+  ]
 
-    const that = this;
 
-    let participar: boolean = false;
-
-    this.participarEvento = {
-      text: 'Participar',
-      onClick(e) {
-        return participar = true;
-      }
-    }
-
-    this.fecharPopup = {
-      text: 'Fechar',
-      OnClick(e) {
-        console.log(e)
-        that.popupVisible = false;
-      },
-    };
-  }
+  constructor(private service: NewEventServiceAPI, private router: Router) { }
 
   ngOnInit(): void {
     this.service.retornoEvento().subscribe((evento: EventsModel[]) => {
@@ -58,8 +53,21 @@ export class HomeComponent implements OnInit {
     this.popupVisible = true;
   }
 
+  fecharPopup(){
+    return this.popupVisible = false;
+  }
+
   administrar(){
     this.router.navigate(['/adm-event']);
   }
+
+  cadastrarParticipantes(participantes: ParticipantesModel){
+    console.log(participantes);
+    this.service.adicionarParticipante(participantes).subscribe(
+      (novoParticipante) =>  this.cardEvento.participantes.push(novoParticipante));
+    this.fecharPopup();
+  }
+
+
 
 }

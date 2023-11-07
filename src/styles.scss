@@ -2,3 +2,26 @@
 .test{
   border: black 2px solid
 }
+
+.fechar{
+  background-color: white;
+  color: black;
+  box-shadow: black;
+}
+
+.limpar{
+  background-color: #EAEAEA;
+  color: #626262;
+  box-shadow: black;
+}
+
+.lineButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 3%;
+}
+
+dx-button{
+  margin: 1%;
+}

@@ -1,3 +1,5 @@
+import {ParticipantesModel} from "./participantes.model";
+
 export class EventsModel {
   id:number;
   nomeEvento: string;
@@ -5,7 +7,7 @@ export class EventsModel {
   dataEvento: any;
   enderecoEvento: string;
   descricaoEvento: string;
-
+  participantes: ParticipantesModel[];
 }
 
 export class RootObject {
