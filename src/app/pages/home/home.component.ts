@@ -18,13 +18,15 @@ export class HomeComponent implements OnInit {
 
   participante: ParticipantesModel = new ParticipantesModel();
 
-  participarEvento: any;
-
-  tipo: number;
-
   popupVisible = false;
 
   texto: string = 'Informe seus dados: ';
+
+  participanteNome: string;
+
+  participanteSetor: any;
+
+  navegar: any = [];
 
   setores = [
     {id: 1, name: 'SIA'},
@@ -37,8 +39,9 @@ export class HomeComponent implements OnInit {
     {id: 8, name: 'Convidado'},
   ]
 
-
-  constructor(private service: NewEventServiceAPI, private router: Router) { }
+  constructor(private service: NewEventServiceAPI, private router: Router) {
+   // this.cardEvento.participantes = new Array<ParticipantesModel>;
+  }
 
   ngOnInit(): void {
     this.service.retornoEvento().subscribe((evento: EventsModel[]) => {
@@ -61,13 +64,32 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/adm-event']);
   }
 
+  part: any = [];
+  participantes(): Array<ParticipantesModel>{
+    const retornoParticipantes: any = [];
+    const participantes: ParticipantesModel = new ParticipantesModel();
+    participantes.nome = this.participanteNome;
+    participantes.setor = this.participanteSetor;
+    retornoParticipantes.push(participantes);
+    console.log(retornoParticipantes);
+    return retornoParticipantes;
+  }
+
+  participanteTeste(idEvento: number){
+    const participante: any = [];
+    participante.push(this.participanteNome,this.participanteSetor);
+    this.service.testeUpdate(idEvento, participante).subscribe(
+      () => console.log("passou component")
+    )
+  }
+  /*
   cadastrarParticipantes(participantes: ParticipantesModel){
     console.log(participantes);
     this.service.adicionarParticipante(participantes).subscribe(
-      (novoParticipante) =>  this.cardEvento.participantes.push(novoParticipante));
+      () =>  console.log(participantes));
     this.fecharPopup();
   }
-
+*/
 
 
 }

@@ -6,7 +6,8 @@
       "tipoEvento": 1,
       "dataEvento": "02/11/2023",
       "descricaoEvento": "Partida de volei, com o pessoal do setor",
-      "id": 1
+      "id": 1,
+      "participantes": ""
     },
     {
       "nomeEvento": "Churrasco",

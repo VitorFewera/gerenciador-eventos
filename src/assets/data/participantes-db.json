@@ -4,26 +4,6 @@
       "nome": "teste",
       "setor": 8,
       "id": 1
-    },
-    {
-      "nome": "teste 2",
-      "setor": 8,
-      "id": 2
-    },
-    {
-      "nome": "teste",
-      "setor": 8,
-      "id": 3
-    },
-    {
-      "nome": "teste",
-      "setor": 8,
-      "id": 4
-    },
-    {
-      "nome": "teste",
-      "setor": 3,
-      "id": 5
     }
   ]
 }

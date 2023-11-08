@@ -28,11 +28,20 @@ export class NewEventServiceAPI{
     return this.httpClient.post<any>(this.apiEventos, evento);
   }
 
-
   adicionarParticipante(participantes: ParticipantesModel): Observable<any>{
     return this.httpClient.post<any>(this.apiParticipantes, participantes);
   }
 
+  addParticipantToEvent(eventId: number, participante: ParticipantesModel) {
+    const url = this.apiEventos + `/${eventId}/participantes`;
+    return this.httpClient.post(url, participante);
+  }
+
+  testeUpdate(testeId: number, informacao = {}){
+    const url = this.apiEventos + `/${testeId}/`;
+    console.log("chegou service " + url + testeId,informacao)
+    return this.httpClient.patch(url, this.evento.participantes);
+  }
 }
 
 

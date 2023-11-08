@@ -1,5 +1,5 @@
 export class ParticipantesModel{
-  id:number;
+  id?:number;
   nome: string;
   setor: any
 }

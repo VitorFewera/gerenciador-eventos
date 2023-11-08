@@ -7,10 +7,13 @@ export class EventsModel {
   dataEvento: any;
   enderecoEvento: string;
   descricaoEvento: string;
-  participantes: ParticipantesModel[];
-}
+  participantes: [{nome: string, setor: any}];
+ }
+
+
 
 export class RootObject {
    eventos: EventsModel[];
+
 }
 
