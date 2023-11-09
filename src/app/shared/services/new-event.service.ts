@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {EventsModel} from "../../models/events.model";
-import {ParticipantesModel} from "../../models/participantes.model";
+import {ParticipantesEventsModel} from "../../models/participantes.model";
+import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 
 
 
@@ -28,19 +29,17 @@ export class NewEventServiceAPI{
     return this.httpClient.post<any>(this.apiEventos, evento);
   }
 
-  adicionarParticipante(participantes: ParticipantesModel): Observable<any>{
-    return this.httpClient.post<any>(this.apiParticipantes, participantes);
-  }
-
-  addParticipantToEvent(eventId: number, participante: ParticipantesModel) {
-    const url = this.apiEventos + `/${eventId}/participantes`;
-    return this.httpClient.post(url, participante);
-  }
-
-  testeUpdate(testeId: number, informacao = {}){
-    const url = this.apiEventos + `/${testeId}/`;
+  testeUpdate(testeId: number, informacao:any){
+    const url = `${this.apiEventos}/${testeId}`;
     console.log("chegou service " + url + testeId,informacao)
-    return this.httpClient.patch(url, this.evento.participantes);
+    return this.httpClient.patch(url, informacao);
+  }
+
+  adicionarParticipante(participantes: ParticipantesEventsModel, idEvento: number): Observable<any>{
+    const url = `${this.apiEventos}/${idEvento}`;
+    this.evento.participantes.push(participantes);
+    console.log("Participante: "+ participantes, "idEvento: "+ idEvento);
+    return this.httpClient.post<any>(url, participantes);
   }
 }
 

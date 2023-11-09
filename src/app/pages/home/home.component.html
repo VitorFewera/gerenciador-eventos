@@ -68,14 +68,14 @@
 
     <dxi-item dataField="nomeParticipante" class=" mb-3 mt-3">
       <dx-text-box placeholder="Nome do participante do Evento"
-                   label="Participante" [(value)]="participanteNome"></dx-text-box>
+                   label="Participante" [(value)]="participante.nome"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe o nome do participante."></dxi-validation-rule>
     </dxi-item>
 
     <dxi-item dataField="setorParticipante">
       <dx-select-box
         label="Defina seu Setor"
-        [(value)]="participanteSetor"
+        [(value)]="participante.setor"
         [dataSource]="setores"
         displayExpr="name"
         valueExpr="id"
@@ -93,7 +93,7 @@
             text="Salvar"
             type="default"
             [width]="100"
-            (click)="participanteTeste(cardEvento.id)"
+            (click)="cadastrarParticipantes(participante, cardEvento.id)"
           >
           </dx-button>
 

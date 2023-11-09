@@ -3,7 +3,8 @@ import {NewEventServiceAPI, Service} from "../../shared/services/new-event.servi
 
 import {Router, RouterModule} from "@angular/router";
 import {EventsModel} from "../../models/events.model";
-import {ParticipantesModel} from "../../models/participantes.model";
+import {ParticipantesModel} from "../../models/ParticipantesModel.model";
+import {ParticipantesEventsModel} from "../../models/participantes.model";
 
 @Component({
   templateUrl: 'home.component.html',
@@ -14,17 +15,13 @@ import {ParticipantesModel} from "../../models/participantes.model";
 export class HomeComponent implements OnInit {
   cardEvento: EventsModel = new EventsModel();
 
-  mostrarEvento: EventsModel[] = [];
+  participante: ParticipantesEventsModel = new ParticipantesEventsModel();
 
-  participante: ParticipantesModel = new ParticipantesModel();
+  mostrarEvento: EventsModel[] = [];
 
   popupVisible = false;
 
   texto: string = 'Informe seus dados: ';
-
-  participanteNome: string;
-
-  participanteSetor: any;
 
   navegar: any = [];
 
@@ -64,32 +61,21 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/adm-event']);
   }
 
-  part: any = [];
-  participantes(): Array<ParticipantesModel>{
-    const retornoParticipantes: any = [];
-    const participantes: ParticipantesModel = new ParticipantesModel();
-    participantes.nome = this.participanteNome;
-    participantes.setor = this.participanteSetor;
-    retornoParticipantes.push(participantes);
-    console.log(retornoParticipantes);
-    return retornoParticipantes;
-  }
-
+/*
   participanteTeste(idEvento: number){
     const participante: any = [];
     participante.push(this.participanteNome,this.participanteSetor);
     this.service.testeUpdate(idEvento, participante).subscribe(
       () => console.log("passou component")
     )
-  }
-  /*
-  cadastrarParticipantes(participantes: ParticipantesModel){
-    console.log(participantes);
-    this.service.adicionarParticipante(participantes).subscribe(
+  }*/
+
+  cadastrarParticipantes(participantes: ParticipantesEventsModel, idEvento: number){
+    console.log(participantes, idEvento);
+    this.service.adicionarParticipante(participantes, idEvento).subscribe(
       () =>  console.log(participantes));
     this.fecharPopup();
   }
-*/
 
 
 }

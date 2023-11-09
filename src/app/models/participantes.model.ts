@@ -1,9 +1,10 @@
-export class ParticipantesModel{
+import {ParticipanteModelBase} from "./participanteModelBase.model";
+
+export class ParticipantesEventsModel extends ParticipanteModelBase{
   id?:number;
-  nome: string;
-  setor: any
+  idParticipante: number;
 }
 
 export class RootObject {
-  participantes: ParticipantesModel[];
+  participantes: ParticipantesEventsModel[];
 }

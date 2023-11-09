@@ -1,4 +1,4 @@
-import {ParticipantesModel} from "./participantes.model";
+import {ParticipantesEventsModel} from "./participantes.model";
 
 export class EventsModel {
   id:number;
@@ -7,7 +7,11 @@ export class EventsModel {
   dataEvento: any;
   enderecoEvento: string;
   descricaoEvento: string;
-  participantes: [{nome: string, setor: any}];
+  participantes: ParticipantesEventsModel[];
+
+  constructor() {
+    this.participantes = new Array<ParticipantesEventsModel>();
+  }
  }
 
 
