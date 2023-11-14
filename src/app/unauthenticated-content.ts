@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-unauthenticated-content',
   template: `
-    <app-single-card [title]="title" [description]="description">
+    <app-single-card [title]="title">
       <router-outlet></router-outlet>
     </app-single-card>
   `,
@@ -30,17 +30,7 @@ export class UnauthenticatedContentComponent {
     const path = this.router.url.split('/')[1];
     switch (path) {
       case 'login-form': return '';
-      case 'reset-password': return 'Recuperar Senha';
       case 'create-account': return 'Criar nova conta';
-      case 'change-password': return 'Alterar Senha';
-      default: return '';
-    }
-  }
-
-  get description() {
-    const path = this.router.url.split('/')[1];
-    switch (path) {
-      case 'reset-password': return 'Please enter the email address that you used to register, and we will send you a link to reset your password via Email.';
       default: return '';
     }
   }

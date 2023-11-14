@@ -7,7 +7,9 @@
       "dataEvento": "02/11/2023",
       "descricaoEvento": "Partida de volei, com o pessoal do setor",
       "id": 1,
-      "participantes": ""
+      "participantes": [
+        2
+      ]
     },
     {
       "nomeEvento": "Churrasco",
@@ -24,14 +26,6 @@
       "dataEvento": "04/11/2023",
       "descricaoEvento": "Fazer hamburger na grelha",
       "id": 3
-    },
-    {
-      "nomeEvento": "teste",
-      "enderecoEvento": "teste",
-      "tipoEvento": 2,
-      "dataEvento": "01/11/2023",
-      "descricaoEvento": "teste",
-      "id": 4
     }
   ]
 }

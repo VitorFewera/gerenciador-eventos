@@ -16,6 +16,7 @@ export class NewEventServiceAPI{
   private apiParticipantes: string = 'http://localhost:3001/participantes';
 
   evento = new EventsModel();
+  participante = new ParticipantesEventsModel();
 
   constructor(private httpClient:HttpClient) {}
 
@@ -35,12 +36,17 @@ export class NewEventServiceAPI{
     return this.httpClient.patch(url, informacao);
   }
 
-  adicionarParticipante(participantes: ParticipantesEventsModel, idEvento: number): Observable<any>{
-    const url = `${this.apiEventos}/${idEvento}`;
-    this.evento.participantes.push(participantes);
-    console.log("Participante: "+ participantes, "idEvento: "+ idEvento);
-    return this.httpClient.post<any>(url, participantes);
+  adicionarParticipante(participantes: ParticipantesModel): Observable<any>{
+    console.log("Participante: "+ participantes);
+    return this.httpClient.post<any>(this.apiParticipantes, participantes);
   }
+
+  adicionarParticipanteEvento(idEvento: number, idParticipante: number): Observable<any>{
+    const url = `${this.apiEventos}/${idEvento}`;
+    const itemAlteracao = this.evento.participantes.push(idParticipante)
+    return this.httpClient.patch(url, itemAlteracao );
+  }
+
 }
 
 

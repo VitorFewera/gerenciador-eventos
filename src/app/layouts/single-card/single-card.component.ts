@@ -11,9 +11,6 @@ export class SingleCardComponent {
   @Input()
   title!: string;
 
-  @Input()
-  description!: string;
-
   constructor() { }
 }
 
@@ -23,5 +20,5 @@ export class SingleCardComponent {
   declarations: [ SingleCardComponent ]
 })
 export class SingleCardModule {
-  
+
 }

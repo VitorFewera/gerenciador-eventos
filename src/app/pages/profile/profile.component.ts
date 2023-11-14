@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {NewEventComponent} from "../new-event/new-event.component";
 import {Service} from "../../shared/services/new-event.service";
-import {UserModels} from "../../models/user.model";
+
 import {UserPanelModule} from "../../shared/components";
 
 @Component({

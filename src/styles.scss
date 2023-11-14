@@ -18,10 +18,12 @@
 .lineButton{
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-top: 3%;
 }
 
 dx-button{
   margin: 1%;
 }
+
+

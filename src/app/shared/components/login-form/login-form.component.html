@@ -1,28 +1,31 @@
-<form class="login-form" (submit)="onSubmit($event)">
+<form class="login-form">
 
   <div class="mx-auto mb-3 text-center teste">
     <img src="/assets/img/fiorilli-png.png" class="rounded mx-auto d-block" style="width: 250px;">
   </div>
 
   <dx-form [formData]="formData" [disabled]="loading" [labelMode]="labelMode">
-    <dxi-item dataField="Login" editorType="dxTextBox"
-              [editorOptions]="{ stylingMode: 'filled', mode: 'string' }">
-      <dxi-validation-rule type="required" message="Informe um acesso correto!"></dxi-validation-rule>
+
+    <dxi-item dataField="Login" editorType="dxTextBox" class="mt-4 ms-0"
+              [editorOptions]="{ stylingMode: 'filled', mode: 'string'}">
+      <dx-text-box [(value)]="user.user" label="Login" name="login"></dx-text-box>
+      <dxi-validation-rule type="required" message="Informe seu nome"></dxi-validation-rule>
       <dxi-validation-rule type="string" message="Esse acesso esta incorreto"></dxi-validation-rule>
-      <!-- <dxo-label [visible]="false"></dxo-label> -->
     </dxi-item>
 
-    <dxi-item dataField="Senha" editorType="dxTextBox"
+    <dxi-item dataField="Senha" editorType="dxTextBox" class="ms-0"
               [editorOptions]="{ stylingMode: 'filled', mode: 'password' }">
+      <dx-text-box [(value)]="user.password" label="Senha" name="senha"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe a senha correta!"></dxi-validation-rule>
-      <!-- <dxo-label [visible]="false"></dxo-label> -->
+      <dxi-validation-rule type="string" message="Esse acesso esta incorreto"></dxi-validation-rule>
     </dxi-item>
 
+    <!--
     <dxi-item>
       <div class="link">
         <a routerLink="/reset-password" class="esqueceu-senha">Esqueceu sua senha?</a>
       </div>
-    </dxi-item>
+    </dxi-item> -->
 
     <!--
      <dxi-item dataField="rememberMe" editorType="dxCheckBox"
@@ -42,7 +45,7 @@
     </dxi-item>
 
     <ng-container *dxTemplate="let item of 'signInTemplate'">
-      <div>
+      <div (click)="logIn()">
         <span class="dx-button-text">
           <ng-container *ngIf="loading; else notLoading">
             <dx-load-indicator width="24px" height="24px" [visible]="true"></dx-load-indicator>

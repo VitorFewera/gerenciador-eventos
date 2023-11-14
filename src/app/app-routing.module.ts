@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginFormComponent, ResetPasswordFormComponent, CreateAccountFormComponent, ChangePasswordFormComponent } from './shared/components';
+import { LoginFormComponent, CreateAccountFormComponent} from './shared/components';
 import { AuthGuardService } from './shared/services';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -41,12 +41,7 @@ const routes: Routes = [
     component: LoginFormComponent,
     canActivate: [ AuthGuardService ]
   },
-  {
-    path: 'reset-password',
-    component: ResetPasswordFormComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
+   {
     path: 'create-account',
     component: CreateAccountFormComponent,
     canActivate: [ AuthGuardService ]
@@ -59,11 +54,6 @@ const routes: Routes = [
   {
     path: 'event-manager', //event-manager/:id
     component: EventManagerComponent,
-    canActivate: [ AuthGuardService ]
-  },
-  {
-    path: 'change-password/:recoveryCode',
-    component: ChangePasswordFormComponent,
     canActivate: [ AuthGuardService ]
   },
   {

@@ -1,105 +1,45 @@
-<form class="create-account-form" (submit)="onSubmit($event)">
-  <!-- Imagem -->
-  <div class="widget-container flex-box row">
-    <span class="text-center">Imagem de Perfil</span>
-    <div
-      id="dropzone-external"
-      class="flex-box"
-      [ngClass]=" isDropZoneActive
-        ? ['dx-theme-accent-as-border-color', 'dropzone-active']
-        : ['dx-theme-border-color'] ">
-      <img id="dropzone-image" [src]="imageSource" *ngIf="imageSource" alt=""/>
-      <div id="dropzone-text" class="flex-box" *ngIf="textVisible">
-        <span>Arraste ou clique aqui para adicionar</span>
-      </div>
-      <dx-progress-bar
-        #uploadProgress
-        [min]="0"
-        [max]="100"
-        width="30%"
-        [showStatus]="false"
-        [visible]="progressVisible"
-        [value]="progressValue"
-      ></dx-progress-bar>
-    </div>
-    <dx-file-uploader
-      #fileUploader
-      dialogTrigger="#dropzone-external"
-      dropZone="#dropzone-external"
-      [multiple]="false"
-      [allowedFileExtensions]="['.jpg', '.jpeg', '.gif', '.png']"
-      uploadMode="instantly"
-      uploadUrl="https://js.devexpress.com/Demos/NetCore/FileUploader/Upload"
-      [visible]="false"
-      (onDropZoneEnter)="onDropZoneEnter($event)"
-      (onDropZoneLeave)="onDropZoneLeave($event)"
-      (onUploaded)="onUploaded($event)"
-      (onProgress)="onProgress($event)"
-      (onUploadStarted)="onUploadStarted($event)"
-    ></dx-file-uploader>
-  </div>
-  <br>
-  <!-- Imagem -->
+<form class="create-account-form">
 
-  <dx-form [formData]="formData" [disabled]="loading" [labelMode]="labelIgualFlow"
+  <dx-form [formData]="formData" [labelMode]="labelFloating"
            class="container">
 
-    <dxi-item dataField="Nome" editorType="dxTextBox" class="col"
-              [editorOptions]="{ stylingMode: 'undefined', mode: 'string', name:'Nome' }">
+    <dxi-item dataField="Nome" editorType="dxTextBox">
       <dx-text-box [(value)]="user.nome" label="Nome" name="nome"
-                   [labelMode]="labelIgualFlow"></dx-text-box>
+                   [labelMode]="labelFloating"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe seu nome"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Informe seu nome!"></dxi-validation-rule>
-      <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
 
 
-    <dxi-item dataField="Setor" editorType="dxTextBox" class="col"
-              [editorOptions]="{ stylingMode: 'undefined', mode: 'string', name:'Setor' }">
-      <dx-text-box [(value)]="user.setor" label="Setor"
-                   [labelMode]="labelIgualFlow"></dx-text-box>
-      <dxi-validation-rule type="required" message="Informe o seu setor na empresa"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Informe seu Setor!"></dxi-validation-rule>
-      <dxo-label [visible]="false"></dxo-label>
+    <dxi-item dataField="setorParticipante">
+      <dx-select-box
+        label="Defina seu Setor"
+        [(value)]="user.setor"
+        [dataSource]="setores"
+        displayExpr="name"
+        valueExpr="id"
+        placeholder="Selecione um setor:">
+      </dx-select-box>
+      <dxi-validation-rule type="required" message="Informe o seu setor."></dxi-validation-rule>
     </dxi-item>
 
-
-    <dxi-item dataField="Email" editorType="dxTextBox" class="col"
-              [editorOptions]="{ stylingMode: 'undefined', mode: 'email'  }">
-      <dx-text-box [(value)]="user.email" label="Email"
-                   [labelMode]="labelIgualFlow"></dx-text-box>
-      <dxi-validation-rule type="required" message="Informe o seu email"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Informe seu Email!"></dxi-validation-rule>
-      <dxo-label [visible]="false"></dxo-label>
-    </dxi-item>
-
-
-    <dxi-item dataField="Login de Acesso" editorType="dxTextBox"
-              [editorOptions]="{ stylingMode: 'underline',  mode: 'string' }">
-      <dx-text-box [(value)]="user.login" label="Login"
-                   [labelMode]="labelIgualFlow"></dx-text-box>
+    <dxi-item dataField="LoginAcesso" editorType="dxTextBox">
+      <dx-text-box [(value)]="user.user" label="Login"
+                   [labelMode]="labelFloating"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe um login"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Informe um login valido!"></dxi-validation-rule>
-      <dxo-label [visible]="false"></dxo-label>
     </dxi-item>
 
 
-    <dxi-item dataField="Senha" editorType="dxTextBox"
-              [editorOptions]="{ stylingMode: 'underline', mode:'password'}">
-      <dx-text-box [(value)]="user.senha" [labelMode]="labelIgualFlow"
-                   label="Senha" ></dx-text-box>
-      <dxi-validation-rule type="password" message="Informe uma senha Valida!"></dxi-validation-rule>
-      <dxo-label [visible]="false"></dxo-label>
+    <dxi-item dataField="Senha" editorType="dxTextBox">
+      <dx-text-box [(value)]="user.password" [labelMode]="labelFloating" stylingMode="password"
+                   label="Senha"></dx-text-box>
+      <dxi-validation-rule type="required" message="Informe uma senha Valida!"></dxi-validation-rule>
     </dxi-item>
 
-    <dxi-item dataField="Confirme sua Senha" editorType="dxTextBox"
-              [editorOptions]="{ stylingMode: 'filled', mode: 'password' }">
-      <dx-text-box [(value)]="senha1" (attr.type)="passwordTextBoxOptions.mode"></dx-text-box>
-      <dxi-validation-rule type="required" message="Confirme sua senha!"></dxi-validation-rule>
+    <!--<dxi-item dataField="Confirme sua Senha" editorType="dxTextBox">
+      <dx-text-box [(value)]="confirmarSenha" [labelMode]="labelFloating" label="Confirme sua senha"></dx-text-box>
       <dxi-validation-rule type="custom" message="Senhas estão divergentes" [validationCallback]="confirmPassword">
       </dxi-validation-rule>
-      <dxo-label [visible]="true"></dxo-label>
-    </dxi-item>
+    </dxi-item>-->
 
     <dxi-item>
       <div class='policy-info'>
@@ -109,9 +49,15 @@
     </dxi-item>
 
 
-    <dxi-item itemType="button">
-      <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'createAccountTemplate'">
-      </dxo-button-options>
+    <dxi-item>
+        <dx-button
+          width="100%"
+          type="default"
+          text="Criar uma nova conta"
+          (click)="cadastrarParticipante(user)">
+
+        </dx-button>
+
     </dxi-item>
 
     <dxi-item>
@@ -119,19 +65,6 @@
         Ja possui uma conta ativa ?<br/> <a routerLink="/login-form">Entre aqui</a>
       </div>
     </dxi-item>
-
-    <ng-container *dxTemplate="let item of 'createAccountTemplate'">
-      <div>
-        <span class="dx-button-text">
-          <ng-container *ngIf="loading; else notLoading">
-            <dx-load-indicator width="24px" height="24px" [visible]="true"></dx-load-indicator>
-          </ng-container>
-
-          <ng-template #notLoading>Criar nova conta</ng-template>
-        </span>
-      </div>
-    </ng-container>
-
   </dx-form>
 </form>
 

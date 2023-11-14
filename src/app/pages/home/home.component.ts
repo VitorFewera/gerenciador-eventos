@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
 
-import {Router, RouterModule} from "@angular/router";
+import {Router} from "@angular/router";
 import {EventsModel} from "../../models/events.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
@@ -25,19 +25,9 @@ export class HomeComponent implements OnInit {
 
   navegar: any = [];
 
-  setores = [
-    {id: 1, name: 'SIA'},
-    {id: 2, name: 'SCPI'},
-    {id: 3, name: 'SIP'},
-    {id: 4, name: 'SIE e agregados'},
-    {id: 5, name: 'Juridico'},
-    {id: 6, name: 'Administrativo'},
-    {id: 7, name: 'Limpeza'},
-    {id: 8, name: 'Convidado'},
-  ]
 
   constructor(private service: NewEventServiceAPI, private router: Router) {
-   // this.cardEvento.participantes = new Array<ParticipantesModel>;
+
   }
 
   ngOnInit(): void {
@@ -57,24 +47,16 @@ export class HomeComponent implements OnInit {
     return this.popupVisible = false;
   }
 
-  administrar(){
-    this.router.navigate(['/adm-event']);
+  partiparEvento(idEvento: number, idParticipante: number){
+    console.log(idEvento, idParticipante)
+    idParticipante = 2;
+    this.service.adicionarParticipanteEvento(idEvento,idParticipante).subscribe(
+      (passando) => console.log(passando)
+    )
   }
 
-/*
-  participanteTeste(idEvento: number){
-    const participante: any = [];
-    participante.push(this.participanteNome,this.participanteSetor);
-    this.service.testeUpdate(idEvento, participante).subscribe(
-      () => console.log("passou component")
-    )
-  }*/
-
-  cadastrarParticipantes(participantes: ParticipantesEventsModel, idEvento: number){
-    console.log(participantes, idEvento);
-    this.service.adicionarParticipante(participantes, idEvento).subscribe(
-      () =>  console.log(participantes));
-    this.fecharPopup();
+  administrar(){
+    this.router.navigate(['/adm-event']);
   }
 
 

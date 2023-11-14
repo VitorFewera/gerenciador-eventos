@@ -37,22 +37,6 @@
   <dxo-position at="center" my="center" collision="fit">
   </dxo-position>
 
-  <!--
-    <dxi-toolbar-item
-      widget="dxButton"
-      toolbar="bottom"
-      location="after"
-      class="fecharCard"
-     [options]="fecharPopup">
-    </dxi-toolbar-item>
-
-    <dxi-toolbar-item
-      widget="dxButton"
-      toolbar="bottom"
-      location="before"
-      [options]="participarEvento">
-    </dxi-toolbar-item>
-  -->
   <div *dxTemplate="let data of 'content'">
     <div class="d-flex justify-content-center">
       <p>
@@ -62,45 +46,28 @@
     <p>
       <span class="textoCard">{{cardEvento.descricaoEvento}}.<br/>Bora ? </span>
     </p>
-    <p class="mt-xxl-5">
-      <span>{{texto}}</span>
+    <p class="mt-5">
+      Localização: <span class="textoCard">{{cardEvento.enderecoEvento}}</span>
     </p>
 
-    <dxi-item dataField="nomeParticipante" class=" mb-3 mt-3">
-      <dx-text-box placeholder="Nome do participante do Evento"
-                   label="Participante" [(value)]="participante.nome"></dx-text-box>
-      <dxi-validation-rule type="required" message="Informe o nome do participante."></dxi-validation-rule>
-    </dxi-item>
+    <p>
 
-    <dxi-item dataField="setorParticipante">
-      <dx-select-box
-        label="Defina seu Setor"
-        [(value)]="participante.setor"
-        [dataSource]="setores"
-        displayExpr="name"
-        valueExpr="id"
-        placeholder="Selecione um setor:">
-      </dx-select-box>
-      <dxi-validation-rule type="required" message="Informe o seu setor."></dxi-validation-rule>
-    </dxi-item>
+      <dxi-item dataField="participantesEvento" class="mt-5">
+        <dx-select-box label="Participantes, até o momento" [dataSource]="cardEvento.participantes">
+        </dx-select-box>
 
-    <div class="buttons-demo mt-5">
+      </dxi-item>
+    </p>
+
+    <div class="buttons-demo mt-5 ">
       <div class="container">
         <div class="buttons-column lineButton">
-
           <dx-button
             stylingMode="contained"
-            text="Salvar"
+            text="Partipar"
             type="default"
             [width]="100"
-            (click)="cadastrarParticipantes(participante, cardEvento.id)"
-          >
-          </dx-button>
-
-          <dx-button class="limpar"
-                     text="Limpar"
-                     type="text"
-                     [width]="100"
+            (click)="partiparEvento(cardEvento.id,participante.idParticipante)"
           >
           </dx-button>
 
@@ -114,6 +81,7 @@
         </div>
       </div>
     </div>
+
 
   </div>
 </dx-popup>

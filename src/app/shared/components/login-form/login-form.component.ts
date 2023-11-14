@@ -1,11 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { DxFormModule } from 'devextreme-angular/ui/form';
-import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
+import {CommonModule} from '@angular/common';
+import {Component, NgModule} from '@angular/core';
+import {Router, RouterModule} from '@angular/router';
+import {DxFormModule} from 'devextreme-angular/ui/form';
+import {DxLoadIndicatorModule} from 'devextreme-angular/ui/load-indicator';
 import notify from 'devextreme/ui/notify';
-import { AuthService } from '../../services';
+import {AuthService} from '../../services';
 import {FormsModule} from "@angular/forms";
+import {ParticipantesModel} from "../../../models/ParticipantesModel.model";
+import {DxTextBoxModule} from "devextreme-angular";
 
 
 @Component({
@@ -14,44 +16,50 @@ import {FormsModule} from "@angular/forms";
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
+  user: ParticipantesModel = new ParticipantesModel();
   loading = false;
   formData: any = {};
   labelMode: string;
-  email = '';
-  password = '';
-
 
   constructor(private authService: AuthService, private router: Router) {
     this.labelMode = 'floating';
   }
 
-  async onSubmit(e: Event) {
+  log: any;
 
-    e.preventDefault();
-    const { email, password } = this.formData;
-    this.loading = true;
-
-    const result = await this.authService.logIn(email, password);
-    if (!result.isOk) {
-      this.loading = false;
-      notify(result.message, 'error', 2000);
-      console.log(result);
-    }
+  logIn() {
+    this.log = this.authService.logIn(this.user.user, this.user.password).subscribe(
+      (retorno) => console.log(retorno.passou),
+      error => console.log(error),
+    () => { return this.navegarUsuario()} );
   }
 
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
   }
+
+  navegarUsuario(){
+     console.log(this.log)
+    if (this.log !== true){
+      this.router.navigate(['/home']);
+    }else{
+      alert('deu ruim')
+    }
+  }
+
 }
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     DxFormModule,
     DxLoadIndicatorModule,
-    FormsModule
+    FormsModule,
+    DxTextBoxModule
   ],
-  declarations: [ LoginFormComponent ],
-  exports: [ LoginFormComponent ]
+  declarations: [LoginFormComponent],
+  exports: [LoginFormComponent]
 })
-export class LoginFormModule { }
+export class LoginFormModule {
+}

@@ -1,29 +1,18 @@
 {
   "participantes": [
     {
-      "nome": "teste",
-      "setor": 8,
+      "nome": "Vitor",
+      "setor": 1,
+      "user": "ferreira",
+      "password": "123",
       "id": 1
     },
     {
       "nome": "teste",
-      "setor": 8,
+      "setor": 2,
+      "user": "teste",
+      "password": "teste123",
       "id": 2
-    },
-    {
-      "nome": "teste 3",
-      "setor": 8,
-      "id": 3
-    },
-    {
-      "nome": "teste 4",
-      "setor": 8,
-      "id": 4
-    },
-    {
-      "nome": "teste agora",
-      "setor": 3,
-      "id": 5
     }
   ]
 }

@@ -1,12 +1,13 @@
 import { Component, NgModule, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { AuthService, IUser } from '../../services';
+import { AuthService} from '../../services';
 import { UserPanelModule } from '../user-panel/user-panel.component';
 import { DxButtonModule } from 'devextreme-angular/ui/button';
 import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 
 import { Router } from '@angular/router';
+import {ParticipantesModel} from "../../../models/ParticipantesModel.model";
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: IUser | null = { email: '' };
+  user: ParticipantesModel;
 
   userMenuItems = [{
     text: 'Perfil',

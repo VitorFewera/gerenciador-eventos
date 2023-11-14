@@ -1,54 +1,43 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
-import {UserModels} from "../../models/user.model";
-
-export interface IUser {
-  email: string;
-  avatarUrl?: string
-}
+import {ParticipantesModel} from "../../models/ParticipantesModel.model";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import DevExpress from "devextreme";
+import { map } from 'rxjs/operators';
 
 const defaultPath = '/';
 const defaultUser = {
   email: 'Adm',
-  //avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
 };
 
 @Injectable()
 export class AuthService {
 
-  //user = new User();
+  private apiParticipantes: string = 'http://localhost:3001/participantes';
 
-  private _user: IUser | null = defaultUser;
+  user: ParticipantesModel = new ParticipantesModel();
+
   get loggedIn(): boolean {
-    return !!this._user;
+    return !!this.user;
   }
 
   private _lastAuthenticatedPath: string = defaultPath;
+  //this.router.navigate([this._lastAuthenticatedPath]);
   set lastAuthenticatedPath(value: string) {
     this._lastAuthenticatedPath = value;
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private httpClient: HttpClient) { }
 
-  async logIn(email: string, password: string) {
-
-    try {
-      // Send request
-      console.log(email, password);
-      this._user = { ...defaultUser, email };
-      this.router.navigate([this._lastAuthenticatedPath]);
-
-      return {
-        isOk: true,
-        data: this._user
-      };
-    }
-    catch {
-      return {
-        isOk: false,
-        message: "Authentication failed"
-      };
-    }
+  logIn(login: string, password: string): Observable<{ passou: boolean }> {
+    console.log(login, password);
+    console.log(`${this.apiParticipantes}?user=${login}&password=${password}`);
+    return this.httpClient
+      .get<any[]>(`${this.apiParticipantes}?user=${login}&password=${password}`)
+      .pipe(
+        map(participantes => ({ passou: participantes.length > 0 }))
+      );
   }
 
   async getUser() {
@@ -57,7 +46,7 @@ export class AuthService {
 
       return {
         isOk: true,
-        data: this._user
+        data: this.user
       };
     }
     catch {
@@ -66,41 +55,6 @@ export class AuthService {
         data: null
       };
     }
-  }
-
-  async createAccount(id: number,login: string, password: string, name: string, sector: string, image: string, email:string) {
-    try {
-      // Send request
-      console.log(id, login, password, name, sector, email, image);
-
-      this.router.navigate(['/create-account']);
-      return {
-        isOk: true
-      };
-    }
-    catch {
-      return {
-        isOk: false,
-        message: "Failed to create account"
-      };
-    }
-  }
-
-  async changePassword(email: string, recoveryCode: string) {
-    try {
-      // Send request
-      console.log(email, recoveryCode);
-
-      return {
-        isOk: true
-      };
-    }
-    catch {
-      return {
-        isOk: false,
-        message: "Failed to change password"
-      }
-    };
   }
 
   async resetPassword(email: string) {
@@ -121,7 +75,7 @@ export class AuthService {
   }
 
   async logOut() {
-    this._user = null;
+    this.user = null;
     this.router.navigate(['/login-form']);
   }
 }
