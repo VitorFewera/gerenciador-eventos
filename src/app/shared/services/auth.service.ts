@@ -6,27 +6,26 @@ import {Observable} from "rxjs";
 import DevExpress from "devextreme";
 import {map} from 'rxjs/operators';
 
-const defaultPath = '/login-form';
+const defaultPath = '/';
 const defaultUser = {
-  email: 'Adm',
+  email: 'sandra@example.com',
+  avatarUrl: 'https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/employees/06.png'
 };
-
 @Injectable()
 export class AuthService {
 
   private apiParticipantes: string = 'http://localhost:3001/participantes';
 
-  user: ParticipantesModel = new ParticipantesModel();
+  user: ParticipantesModel;
 
-  private _lastAuthenticatedPath: string = defaultPath;
-
+  private _user = ParticipantesModel;
   get loggedIn(): boolean {
-    return this.retornoLog;
+    return !!this._user;
   }
 
+  private _lastAuthenticatedPath: string = defaultPath;
   set lastAuthenticatedPath(value: string) {
     this._lastAuthenticatedPath = value;
-    this.router.navigate([this._lastAuthenticatedPath]);
   }
 
   constructor(private router: Router, private httpClient: HttpClient) {
@@ -84,24 +83,23 @@ export class AuthService {
   }
 
   async logOut() {
-    this.retornoLog = false;
+    this._user = null;
     this.router.navigate(['/login-form']);
   }
 }
 
-
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {
-  }
+  constructor(private router: Router, private authService: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const isLoggedIn = this.authService.loggedIn;
-
     const isAuthForm = [
       'login-form',
+      'reset-password',
       'create-account',
-    ].includes(route.routeConfig?.path || defaultPath);
+      'change-password/:recoveryCode'
+    ].includes(route.routeConfig.path);
 
     if (isLoggedIn && isAuthForm) {
       this.authService.lastAuthenticatedPath = defaultPath;
@@ -114,7 +112,7 @@ export class AuthGuardService implements CanActivate {
     }
 
     if (isLoggedIn) {
-      this.authService.lastAuthenticatedPath = route.routeConfig?.path || defaultPath;
+      this.authService.lastAuthenticatedPath = route.routeConfig.path;
     }
 
     return isLoggedIn || isAuthForm;

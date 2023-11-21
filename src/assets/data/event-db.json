@@ -9,7 +9,12 @@
       "id": 1,
       "participantes": [
         {
-          "idParticipante": "http://localhost:3001/participantes?user=ferreira&password=123",
+          "idParticipante": "2",
+          "nome": "",
+          "setor": ""
+        },
+        {
+          "idParticipante": "2",
           "nome": "",
           "setor": ""
         }

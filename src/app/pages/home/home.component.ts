@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
 
   partiparEvento(idEvento: number, idParticipante: string){
     console.log(idEvento, idParticipante)
-    idParticipante = '1';
+    idParticipante = '2';
     console.log("idParticipante depois do JSON.parse", idParticipante)
     this.service.adicionarParticipanteEvento(idEvento,idParticipante).subscribe(
       (passando) => console.log(passando)

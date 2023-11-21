@@ -39,10 +39,12 @@ const routes: Routes = [
   {
     path: 'login-form',
     component: LoginFormComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'create-account',
     component: CreateAccountFormComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'adm-event',
@@ -56,7 +58,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'login-form'
+    redirectTo: '/home'
   }
 ];
 

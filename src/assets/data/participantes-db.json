@@ -13,6 +13,13 @@
       "user": "teste",
       "password": "teste123",
       "id": 2
+    },
+    {
+      "nome": "teste",
+      "setor": 3,
+      "user": "teste",
+      "password": "123",
+      "id": 3
     }
   ]
 }

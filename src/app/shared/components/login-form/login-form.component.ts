@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {Component, NgModule} from '@angular/core';
+import {Component, EventEmitter, NgModule, Output} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
 import {DxFormModule} from 'devextreme-angular/ui/form';
 import {DxLoadIndicatorModule} from 'devextreme-angular/ui/load-indicator';
@@ -25,29 +25,43 @@ export class LoginFormComponent {
     this.labelMode = 'floating';
   }
 
-  log: any;
 
   logIn() {
-    this.log = this.authService.logIn(this.user.user, this.user.password).subscribe(
-      (retorno) => console.log(retorno.passou));
-      //error => console.log(error)
-    //() => { return this.navegarUsuario()});
+    this.authService.logIn(this.user.user, this.user.password).subscribe(
+      (retorno) => {
+        if(!retorno){
+          console.log('Login falhou', retorno);
+        } else {
+
+          console.log('Login bem-sucedido', retorno);
+          this.router.navigate(['/home']);
+        }
+      },
+      (error) => {
+        console.error('Erro ao realizar login', error);
+      })/*
+      }} retorno)//console.log('meu retorno ',retorno.passou));
+    this.router.navigateByUrl('/home');*/
   }
+
+  @Output() dataEvent = new EventEmitter<any>();
+
+
+
 
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
   }
 
-  /*
-  navegarUsuario(){
-     console.log(this.log)
-    if (this.log !== true){
-      this.router.navigate(['/home']);
-    }else{
-      alert('deu ruim')
-    }
-  }*/
 
+  // navegarUsuario() {
+  //   console.log(this.log)
+  //   if (this.log !== true) {
+  //     this.router.navigate(['/home']);
+  //   } else {
+  //     alert('deu ruim')
+  //   }
+  // }
 }
 
 @NgModule({
