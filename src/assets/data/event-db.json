@@ -8,7 +8,11 @@
       "descricaoEvento": "Partida de volei, com o pessoal do setor",
       "id": 1,
       "participantes": [
-        2
+        {
+          "idParticipante": "http://localhost:3001/participantes?user=ferreira&password=123",
+          "nome": "",
+          "setor": ""
+        }
       ]
     },
     {

@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router, ActivatedRouteSnapshot} from '@angular/router';
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import DevExpress from "devextreme";
-import { map } from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 
-const defaultPath = '/';
+const defaultPath = '/login-form';
 const defaultUser = {
   email: 'Adm',
 };
@@ -18,27 +18,38 @@ export class AuthService {
 
   user: ParticipantesModel = new ParticipantesModel();
 
+  private _lastAuthenticatedPath: string = defaultPath;
+
   get loggedIn(): boolean {
-    return !!this.user;
+    return this.retornoLog;
   }
 
-  private _lastAuthenticatedPath: string = defaultPath;
-  //this.router.navigate([this._lastAuthenticatedPath]);
   set lastAuthenticatedPath(value: string) {
     this._lastAuthenticatedPath = value;
+    this.router.navigate([this._lastAuthenticatedPath]);
   }
 
-  constructor(private router: Router, private httpClient: HttpClient) { }
+  constructor(private router: Router, private httpClient: HttpClient) {
+  }
+
+  retornoLog: any;
 
   logIn(login: string, password: string): Observable<{ passou: boolean }> {
+    console.log(this.getUsuario(login, password));
+    this.retornoLog = this.getUsuario(login, password).pipe(
+      map(participantes => ({passou: participantes.length > 0}))
+    );
+    console.log('retornoLog: ', this.retornoLog)
+    return this.retornoLog;
+  }
+
+
+  getUsuario(login: string, password: string): Observable<any> {
     console.log(login, password);
     console.log(`${this.apiParticipantes}?user=${login}&password=${password}`);
-    return this.httpClient
-      .get<any[]>(`${this.apiParticipantes}?user=${login}&password=${password}`)
-      .pipe(
-        map(participantes => ({ passou: participantes.length > 0 }))
-      );
+    return this.httpClient.get(`${this.apiParticipantes}?user=${login}&password=${password}`)
   }
+
 
   async getUser() {
     try {
@@ -48,8 +59,7 @@ export class AuthService {
         isOk: true,
         data: this.user
       };
-    }
-    catch {
+    } catch {
       return {
         isOk: false,
         data: null
@@ -65,8 +75,7 @@ export class AuthService {
       return {
         isOk: true
       };
-    }
-    catch {
+    } catch {
       return {
         isOk: false,
         message: "Failed to reset password"
@@ -75,22 +84,23 @@ export class AuthService {
   }
 
   async logOut() {
-    this.user = null;
+    this.retornoLog = false;
     this.router.navigate(['/login-form']);
   }
 }
 
+
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const isLoggedIn = this.authService.loggedIn;
+
     const isAuthForm = [
       'login-form',
-      'reset-password',
       'create-account',
-      'change-password/:recoveryCode'
     ].includes(route.routeConfig?.path || defaultPath);
 
     if (isLoggedIn && isAuthForm) {
@@ -110,3 +120,4 @@ export class AuthGuardService implements CanActivate {
     return isLoggedIn || isAuthForm;
   }
 }
+

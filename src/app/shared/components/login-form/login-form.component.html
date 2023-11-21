@@ -10,14 +10,12 @@
               [editorOptions]="{ stylingMode: 'filled', mode: 'string'}">
       <dx-text-box [(value)]="user.user" label="Login" name="login"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe seu nome"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Esse acesso esta incorreto"></dxi-validation-rule>
     </dxi-item>
 
     <dxi-item dataField="Senha" editorType="dxTextBox" class="ms-0"
               [editorOptions]="{ stylingMode: 'filled', mode: 'password' }">
       <dx-text-box [(value)]="user.password" label="Senha" name="senha"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe a senha correta!"></dxi-validation-rule>
-      <dxi-validation-rule type="string" message="Esse acesso esta incorreto"></dxi-validation-rule>
     </dxi-item>
 
     <!--

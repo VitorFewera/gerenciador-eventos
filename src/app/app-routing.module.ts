@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginFormComponent, CreateAccountFormComponent} from './shared/components';
-import { AuthGuardService } from './shared/services';
-import { HomeComponent } from './pages/home/home.component';
-import { ProfileComponent } from './pages/profile/profile.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {LoginFormComponent, CreateAccountFormComponent} from './shared/components';
+import {AuthGuardService} from './shared/services';
+import {HomeComponent} from './pages/home/home.component';
+import {ProfileComponent} from './pages/profile/profile.component';
 import {
   DxButtonModule,
   DxDataGridModule,
@@ -24,41 +24,39 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'new-event',
     component: NewEventComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'home',
     component: HomeComponent,
-    //canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login-form',
     component: LoginFormComponent,
-    canActivate: [ AuthGuardService ]
   },
-   {
+  {
     path: 'create-account',
     component: CreateAccountFormComponent,
-    canActivate: [ AuthGuardService ]
   },
   {
     path: 'adm-event',
     component: AdmEventComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: 'event-manager', //event-manager/:id
     component: EventManagerComponent,
-    canActivate: [ AuthGuardService ]
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',
-    redirectTo: 'home'
+    redirectTo: 'login-form'
   }
 ];
 
@@ -72,4 +70,5 @@ const routes: Routes = [
 
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

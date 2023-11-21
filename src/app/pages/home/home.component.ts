@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {EventsModel} from "../../models/events.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
+import {AuthService} from "../../shared/services";
 
 @Component({
   templateUrl: 'home.component.html',
@@ -25,8 +26,11 @@ export class HomeComponent implements OnInit {
 
   navegar: any = [];
 
+  userData = localStorage.getItem('userData');
 
-  constructor(private service: NewEventServiceAPI, private router: Router) {
+
+
+  constructor(private service: NewEventServiceAPI, private serviceAuth: AuthService, private router: Router) {
 
   }
 
@@ -47,9 +51,10 @@ export class HomeComponent implements OnInit {
     return this.popupVisible = false;
   }
 
-  partiparEvento(idEvento: number, idParticipante: number){
+  partiparEvento(idEvento: number, idParticipante: string){
     console.log(idEvento, idParticipante)
-    idParticipante = 2;
+    idParticipante = '1';
+    console.log("idParticipante depois do JSON.parse", idParticipante)
     this.service.adicionarParticipanteEvento(idEvento,idParticipante).subscribe(
       (passando) => console.log(passando)
     )

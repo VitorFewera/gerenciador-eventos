@@ -29,15 +29,16 @@ export class LoginFormComponent {
 
   logIn() {
     this.log = this.authService.logIn(this.user.user, this.user.password).subscribe(
-      (retorno) => console.log(retorno.passou),
-      error => console.log(error),
-    () => { return this.navegarUsuario()} );
+      (retorno) => console.log(retorno.passou));
+      //error => console.log(error)
+    //() => { return this.navegarUsuario()});
   }
 
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
   }
 
+  /*
   navegarUsuario(){
      console.log(this.log)
     if (this.log !== true){
@@ -45,7 +46,7 @@ export class LoginFormComponent {
     }else{
       alert('deu ruim')
     }
-  }
+  }*/
 
 }
 

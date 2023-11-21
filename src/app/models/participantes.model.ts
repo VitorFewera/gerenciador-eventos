@@ -2,7 +2,7 @@ import {ParticipanteModelBase} from "./participanteModelBase.model";
 
 export class ParticipantesEventsModel extends ParticipanteModelBase{
   id?:number;
-  idParticipante: number;
+  idParticipante: string;
 }
 
 export class RootObject {
