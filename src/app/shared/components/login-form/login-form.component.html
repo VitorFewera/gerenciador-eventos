@@ -44,12 +44,14 @@
 
     <ng-container *dxTemplate="let item of 'signInTemplate'">
       <div (click)="logIn()">
+        <div >
         <span class="dx-button-text">
           <ng-container *ngIf="loading; else notLoading">
             <dx-load-indicator width="24px" height="24px" [visible]="true"></dx-load-indicator>
           </ng-container>
           <ng-template #notLoading>Entrar</ng-template>
         </span>
+      </div>
       </div>
     </ng-container>
 

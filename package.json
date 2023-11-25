@@ -26,6 +26,7 @@
     "bootstrap": "^5.2.3",
     "devextreme": "22.2.5",
     "devextreme-angular": "22.2.5",
+    "devextreme-aspnet-data-nojquery": "^3.0.0",
     "devextreme-schematics": "^1.4.2",
     "jquery": "^3.3.1",
     "json-server": "^0.17.1",

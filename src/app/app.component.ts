@@ -17,6 +17,8 @@ export class AppComponent  {
 
 
   isAuthenticated() {
+   // console.log('chegou aqui', this.authService.loggedIn);
+
     return this.authService.loggedIn;
   }
 }

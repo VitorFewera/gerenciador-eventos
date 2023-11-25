@@ -20,6 +20,16 @@
       "user": "teste",
       "password": "123",
       "id": 3
+    },
+    {
+      "nome": "teste3",
+      "setor": 4,
+      "user": "teste3",
+      "password": "123",
+      "id": 4
+    },
+    {
+      "id": 5
     }
   ]
 }

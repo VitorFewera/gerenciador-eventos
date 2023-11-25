@@ -8,6 +8,7 @@ import { DxToolbarModule } from 'devextreme-angular/ui/toolbar';
 
 import { Router } from '@angular/router';
 import {ParticipantesModel} from "../../../models/ParticipantesModel.model";
+import { ParticipantesEventsModel } from 'src/app/models/participantes.model';
 @Component({
   selector: 'app-header',
   templateUrl: 'header.component.html',
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: ParticipantesModel;
+  user: ParticipantesEventsModel;
 
   userMenuItems = [{
     text: 'Perfil',
@@ -44,7 +45,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.getUser().then((e) => this.user = e.data);
+ //   this.authService.getUser().then((e) => this.user = e.data);
   }
 
   toggleMenu = () => {

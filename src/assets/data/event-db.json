@@ -26,15 +26,46 @@
       "tipoEvento": 2,
       "dataEvento": "03/11/2023",
       "descricaoEvento": "Churrasco do setor  do SIA no alojamento",
-      "id": 2
+      "id": 2,
+      "participantes": [
+        {
+          "idParticipante": "2",
+          "nome": "",
+          "setor": ""
+        },
+        {
+          "idParticipante": "2",
+          "nome": "",
+          "setor": ""
+        }
+      ]
     },
     {
-      "nomeEvento": "hambúrguer",
-      "enderecoEvento": "Alojamento da Fiorilli",
-      "tipoEvento": 3,
-      "dataEvento": "04/11/2023",
-      "descricaoEvento": "Fazer hamburger na grelha",
+      "participantes": [],
+      "nomeEvento": "teste",
+      "enderecoEvento": "teste",
+      "tipoEvento": 2,
+      "dataEvento": "30/11/2023",
+      "descricaoEvento": "teste",
       "id": 3
+    },
+    {
+      "participantes": [],
+      "nomeEvento": "Evento completo",
+      "enderecoEvento": "completo",
+      "tipoEvento": 1,
+      "dataEvento": "22/11/2023",
+      "descricaoEvento": "completo",
+      "id": 4
+    },
+    {
+      "participantes": [],
+      "nomeEvento": "teste",
+      "enderecoEvento": "teste",
+      "tipoEvento": 1,
+      "dataEvento": "07/11/2023",
+      "descricaoEvento": "teste",
+      "id": 5
     }
   ]
 }

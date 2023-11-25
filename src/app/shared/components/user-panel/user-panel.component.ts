@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DxListModule } from 'devextreme-angular/ui/list';
 import { DxContextMenuModule } from 'devextreme-angular/ui/context-menu';
 import {ParticipantesModel} from "../../../models/ParticipantesModel.model";
+import { ParticipantesEventsModel } from 'src/app/models/participantes.model';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class UserPanelComponent {
   menuMode!: string;
 
   @Input()
-  user!: ParticipantesModel;
+  user!: ParticipantesEventsModel;
 
   constructor() {}
 }

@@ -3072,6 +3072,11 @@ devextreme-angular@22.2.5:
     inferno-server "7.4.11"
     tslib "^2.2.0"
 
+devextreme-aspnet-data-nojquery@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/devextreme-aspnet-data-nojquery/-/devextreme-aspnet-data-nojquery-3.0.0.tgz#2a116c62128e7aede2c2d22ca8ea1e4de3893852"
+  integrity sha512-2wkePdGr4+nnSUZ8PUFR9biFhvMD2gztz/Yim7Iu/szAQJcgitfgOa12xqIQn4B5xpOm3+kupjccpBsED9nDMA==
+
 devextreme-cli@latest:
   version "1.4.2"
   resolved "https://registry.npmjs.org/devextreme-cli/-/devextreme-cli-1.4.2.tgz"
