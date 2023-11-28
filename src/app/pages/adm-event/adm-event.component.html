@@ -5,49 +5,38 @@
       <div class="col justify-content-md-center">
         <div class="content-block dx-card responsive-paddings shadow col">
 
-          <div id="tree-list-demo">
-            <dx-tree-list
-              id="participantes"
-              [dataSource]="eventosCadastrados"
-              keyExpr="id"
-              parentIdExpr="Head_ID"
-              [showRowLines]="true"
-              [showBorders]="true"
-              [columnAutoWidth]="true"
-              (onEditorPreparing)="editorPreparing($event)"
+
+          <dx-data-grid
+            id="grid"
+            [dataSource]="dataSource"
+            [repaintChangesOnly]="true"
+            [showBorders]="true"
+          >
+            <dxo-scrolling mode="virtual"></dxo-scrolling>
+            <dxo-editing
+              mode="cell"
+              [refreshMode]="refreshMode"
+              [allowAdding]="false"
+              [allowUpdating]="true"
+              [allowDeleting]="true"
             >
-              <dxo-editing
-                mode="row"
-                [allowUpdating]="true"
-                [allowDeleting]="true"><!--Adicionar programação de deletar-->
+            </dxo-editing>
 
-              </dxo-editing>
+            <dxi-column dataField="nomeEvento" caption="Nome do Evento"></dxi-column>
+            <dxi-column dataField="dataEvento" dataType="date"></dxi-column>
+            <dxi-column dataField="enderecoEvento"></dxi-column>
+            <dxi-column dataField="descricaoEvento"></dxi-column>
+            <dxi-column dataField="tipoEvento" caption="Tipo do Evento" dataType="number">
+              <!--<dxo-lookup
+                [dataSource]="tipoEventoData"
+                valueExpr="Value"
+                displayExpr="Text"
+              ></dxo-lookup> -->
+            </dxi-column>
+          </dx-data-grid>
 
-              <dxi-column dataField="nomeEvento" caption="Nome do Evento">
-                <dxi-validation-rule type="required"></dxi-validation-rule>
-              </dxi-column>
-              <dxi-column dataField="dataEvento" caption="Data" dataType="date" >
-                <dxi-validation-rule type="required"></dxi-validation-rule>
-              </dxi-column>
-              <dxi-column dataField="tipoEvento" caption="Tipo do Evento">
-                <dxi-validation-rule type="required"></dxi-validation-rule>
-              </dxi-column>
-              <dxi-column dataField="descricaoEvento" capitio="Descrição do Evento" [width]="100">
-                <dxi-validation-rule type="required"></dxi-validation-rule>
-              </dxi-column>
-              <dxi-column dataField="enderecoEvento" [width]="150">
-                <dxi-validation-rule type="required"></dxi-validation-rule>
-              </dxi-column>
-              <dxi-column type="buttons">
-                <dxi-button name="edit"  ></dxi-button>
-                <dxi-button name="delete" ></dxi-button>
-              </dxi-column>
-            </dx-tree-list>
-          </div>
 
         </div>
-
-
       </div>
     </div>
   </div>

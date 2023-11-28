@@ -28,11 +28,7 @@ export class HomeComponent implements OnInit {
 
   userData = localStorage.getItem('userData');
 
-
-
-  constructor(private service: NewEventServiceAPI, private serviceAuth: AuthService, private router: Router) {
-
-  }
+  constructor(private service: NewEventServiceAPI, private serviceAuth: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.retornoEvento().subscribe((evento: EventsModel[]) => {
@@ -53,7 +49,9 @@ export class HomeComponent implements OnInit {
 
   partiparEvento(idEvento: number, idParticipante: string){
     console.log(idEvento, idParticipante)
-    idParticipante = '2';
+    const receberJSON = localStorage.getItem('user')
+    const idPar = JSON.parse(receberJSON);
+    idParticipante = idPar.valueOf();
     console.log("idParticipante depois do JSON.parse", idParticipante)
     this.service.adicionarParticipanteEvento(idEvento,idParticipante).subscribe(
       (passando) => console.log(passando)

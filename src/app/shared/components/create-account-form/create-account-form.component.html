@@ -30,7 +30,7 @@
 
 
     <dxi-item dataField="Senha" editorType="dxTextBox">
-      <dx-text-box [(value)]="user.password" [labelMode]="labelFloating" stylingMode="password"
+      <dx-text-box [(value)]="user.password" [labelMode]="labelFloating" [mode]="'password'"
                    label="Senha"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe uma senha Valida!"></dxi-validation-rule>
     </dxi-item>

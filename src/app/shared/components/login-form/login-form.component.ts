@@ -27,8 +27,9 @@ export class LoginFormComponent {
   logIn() {
     this.authService.logIn(this.user.user, this.user.password).subscribe(
       (retorno) => {
-        if (retorno.passou) {
+         if (retorno.passou) {
           console.log('Login bem-sucedido', retorno);
+          console.log('o loggedIn chega assim: ',this.authService.loggedIn);
           this.router.navigate(['/home']);
         } else {
           console.log('Login falhou', retorno);
@@ -42,21 +43,10 @@ export class LoginFormComponent {
     );
   }
 
-  @Output() dataEvent = new EventEmitter<any>();
-
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
   };
-
-  // navegarUsuario() {
-  //   console.log(this.log)
-  //   if (this.log !== true) {
-  //     this.router.navigate(['/home']);
-  //   } else {
-  //     alert('deu ruim')
-  //   }
-  // }
-}
+ }
 
 @NgModule({
   imports: [

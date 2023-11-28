@@ -14,22 +14,9 @@
 
     <dxi-item dataField="Senha" editorType="dxTextBox" class="mt-2 ms-0"
               [editorOptions]="{ stylingMode: 'filled', mode: 'password' }">
-      <dx-text-box [(value)]="user.password" label="Senha" name="senha"></dx-text-box>
+      <dx-text-box [(value)]="user.password" label="Senha" [mode]="'password'" name="senha"></dx-text-box>
       <dxi-validation-rule type="required" message="Informe a senha correta!"></dxi-validation-rule>
     </dxi-item>
-
-    <!--
-    <dxi-item>
-      <div class="link">
-        <a routerLink="/reset-password" class="esqueceu-senha">Esqueceu sua senha?</a>
-      </div>
-    </dxi-item> -->
-
-    <!--
-     <dxi-item dataField="rememberMe" editorType="dxCheckBox"
-       [editorOptions]="{ text: 'Lembrar Senha', elementAttr: { class: 'form-text' } }">
-       <dxo-label [visible]="false"></dxo-label>
-     </dxi-item>-->
 
     <dxi-item itemType="button">
       <dxo-button-options width="100%" type="default" [useSubmitBehavior]="true" [template]="'signInTemplate'">

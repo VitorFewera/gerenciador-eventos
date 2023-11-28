@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { ParticipantesModel } from '../../models/ParticipantesModel.model';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ParticipantesModel} from '../../models/ParticipantesModel.model';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 import DevExpress from 'devextreme';
-import { map } from 'rxjs/operators';
-import { ParticipantesEventsModel } from 'src/app/models/participantes.model';
+import {map} from 'rxjs/operators';
+import {ParticipantesEventsModel} from 'src/app/models/participantes.model';
 
 const defaultPath = '/';
 
@@ -14,8 +14,6 @@ export class AuthService {
   private apiParticipantes: string = 'http://localhost:3001/participantes';
 
   get loggedIn(): boolean {
-
-
     return this.retornoLog;
   }
 
@@ -24,29 +22,32 @@ export class AuthService {
     this._lastAuthenticatedPath = value;
   }
 
-  constructor(private router: Router, private httpClient: HttpClient) {}
+  constructor(private router: Router, private httpClient: HttpClient) {
+  }
 
   retornoLog: any;
 
   logIn(login: string, password: string): Observable<{ passou: boolean }> {
-    console.log(this.getUsuario(login, password));
+    console.log('log do  logIn com o getUsuario: ', this.getUsuario(login, password));
     return this.retornoLog = this.getUsuario(login, password).pipe(
-      map((participantes) => ({ passou: participantes.length > 0 }))
-    );
+      map((participantes) => ({passou: participantes.length > 0}))
+    )
+
   }
 
   getUsuario(login: string, password: string): Observable<any> {
     console.log(login, password);
-    console.log(`${this.apiParticipantes}?user=${login}&password=${password}`);
+    const url = `${this.apiParticipantes}?user=${login}&password=${password}`;
+    console.log(url);
+    localStorage.setItem('user', JSON.stringify(url));
     return this.httpClient.get(
-      `${this.apiParticipantes}?user=${login}&password=${password}`
-    );
+      `${this.apiParticipantes}?user=${login}&password=${password}`);
   }
 
 
 
   async logOut() {
-   this.retornoLog = null;
+    this.retornoLog = null;
     this.router.navigate(['/login-form']);
   }
 
@@ -54,7 +55,8 @@ export class AuthService {
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const isLoggedIn = this.authService.loggedIn;
@@ -81,13 +83,14 @@ export class AuthGuardService implements CanActivate {
     if (isLoggedIn) {
       console.log('passou aqui 3');
 
-     this.authService.lastAuthenticatedPath = route.routeConfig.path;
-     console.log('ele tras isso ',this.authService.lastAuthenticatedPath);
+      this.authService.lastAuthenticatedPath = route.routeConfig.path;
+      console.log('ele tras isso ', this.authService.lastAuthenticatedPath);
 
     }
 
     console.log('o metodo authGuardian retorna: ', isLoggedIn || isAuthForm);
 
     return isLoggedIn || isAuthForm;
-  }}
+  }
+}
 

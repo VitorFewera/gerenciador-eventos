@@ -1,5 +1,9 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, enableProdMode, HostBinding } from '@angular/core';
 import { AuthService, ScreenService, AppInfoService } from './shared/services';
+
+if (!/localhost/.test(document.location.host)) {
+  enableProdMode();
+}
 
 @Component({
   selector: 'app-root',

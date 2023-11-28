@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NewEventComponent } from './pages/new-event/new-event.component';
 import {
     DxButtonModule,
-    DxCheckBoxModule, DxDateBoxModule,
+    DxCheckBoxModule, DxDataGridModule, DxDateBoxModule,
     DxFormModule,
     DxNumberBoxModule,
     DxSelectBoxModule, DxTextBoxModule,
@@ -32,7 +32,7 @@ registerLocaleData(localePt, 'pt-BR');
     AppComponent,
     NewEventComponent,
     EventManagerComponent,
-    AdmEventComponent,
+    AdmEventComponent
   ],
     imports: [
         BrowserModule,
@@ -54,7 +54,8 @@ registerLocaleData(localePt, 'pt-BR');
         HttpClientModule,
         FormsModule,
         DxTextBoxModule,
-        DxDateBoxModule
+        DxDateBoxModule,
+        DxDataGridModule
     ],
   providers: [
     AuthService,

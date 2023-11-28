@@ -52,7 +52,7 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
-    path: 'event-manager', //event-manager/:id
+    path: 'event-manager',
     component: EventManagerComponent,
     canActivate: [AuthGuardService]
   },
