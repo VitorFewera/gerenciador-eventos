@@ -1,12 +1,14 @@
-import {Component, enableProdMode, OnInit} from '@angular/core';
+import {Component, enableProdMode, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import {AdmEventService} from "../../shared/services/adm-event.service";
 import {EventsModel} from "../../models/events.model";
+import {BrowserModule} from '@angular/platform-browser';
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {
   HttpClient, HttpClientModule, HttpHeaders, HttpParams,
 } from '@angular/common/http';
 import CustomStore from 'devextreme/data/custom_store';
-import { lastValueFrom } from 'rxjs/internal/lastValueFrom';
-import { formatDate } from 'devextreme/localization';
+import {lastValueFrom} from 'rxjs/internal/lastValueFrom';
+import {formatDate} from 'devextreme/localization';
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -21,7 +23,6 @@ if (!/localhost/.test(document.location.host)) {
 })
 
 
-
 export class AdmEventComponent implements OnInit {
 
 
@@ -32,7 +33,7 @@ export class AdmEventComponent implements OnInit {
 
   evento: EventsModel = new EventsModel();
 
-  dataSource: any;
+  mostrarEvento: EventsModel[] ;
 
   customersData: any;
 
@@ -44,23 +45,21 @@ export class AdmEventComponent implements OnInit {
 
   requests: string[] = [];
 
+  private url = 'http://localhost:3000/eventos';
+
   constructor(private http: HttpClient) {
-    const url = 'http://localhost:3000/eventos'
 
     this.refreshMode = 'reshape';
     this.refreshModes = ['full', 'reshape', 'repaint'];
 
-    this.dataSource = new CustomStore({
-      key: '/id',
-      load: () => this.sendRequest(`${url}`).catch(error => console.log(error)),
-      insert: (values) => this.sendRequest(`${URL}/InsertOrder`, 'POST', {
-        values: JSON.stringify(values),
-      }),
-      update: (key, values) => this.sendRequest(`${URL}/UpdateOrder`, 'PUT', {
+    this.eventosCadastrados = new CustomStore({
+      key: 'id',
+      load: () => this.sendRequest(`${this.url}`),
+      update: (key, values) => this.sendRequest(`${this.url}/`, 'PUT', {
         key,
         values: JSON.stringify(values),
       }),
-      remove: (key) => this.sendRequest(`${URL}/DeleteOrder`, 'DELETE', {
+      remove: (key) => this.sendRequest(`${this.url}/id`, 'DELETE', {
         key,
       }),
     });
@@ -69,20 +68,22 @@ export class AdmEventComponent implements OnInit {
     this.tipoEventoData = new CustomStore({
       key: 'tipoEvento',
       loadMode: 'raw',
-      load: () => this.sendRequest(`${URL}/tipoEvento`),
+      load: () => this.sendRequest(`${this.url}/tipoEvento`),
     });
   }
 
-  sendRequest(url: string, method = 'GET', data: any = {}): any {
+  sendRequest(url, method = 'GET', data: any = {}): any {
     this.logRequest(method, url, data);
 
-    const httpParams = new HttpParams({ fromObject: data });
-    const httpOptions = { withCredentials: true, body: httpParams };
+    const httpParams = new HttpParams({fromObject: data});
+    const httpOptions = {withCredentials: true, body: httpParams};
     let result;
+
 
     switch (method) {
       case 'GET':
-        result = this.http.get(url, httpOptions);
+        result = this.http.get(url);
+        console.log('pegou o get: ', result)
         break;
       case 'PUT':
         result = this.http.put(url, httpParams, httpOptions);
@@ -94,6 +95,7 @@ export class AdmEventComponent implements OnInit {
         result = this.http.delete(url, httpOptions);
         break;
     }
+    console.log('dentro do sendResquest: ', result);
 
     return lastValueFrom(result)
       .then((data: any) => (method === 'GET' ? data.data : data))

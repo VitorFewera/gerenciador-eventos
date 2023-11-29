@@ -7,10 +7,10 @@
 
 
           <dx-data-grid
-            id="grid"
-            [dataSource]="dataSource"
+            id="evento"
+            [dataSource]="eventosCadastrados"
             [repaintChangesOnly]="true"
-            [showBorders]="true"
+            [showBorders]="false"
           >
             <dxo-scrolling mode="virtual"></dxo-scrolling>
             <dxo-editing
@@ -22,17 +22,21 @@
             >
             </dxo-editing>
 
-            <dxi-column dataField="nomeEvento" caption="Nome do Evento"></dxi-column>
-            <dxi-column dataField="dataEvento" dataType="date"></dxi-column>
-            <dxi-column dataField="enderecoEvento"></dxi-column>
-            <dxi-column dataField="descricaoEvento"></dxi-column>
+            <dxi-column dataField="nomeEvento" caption="Nome"></dxi-column>
+            <dxi-column dataField="dataEvento" caption="Data" dataType="date"></dxi-column>
+            <dxi-column dataField="enderecoEvento" caption="Endereço"></dxi-column>
+            <dxi-column dataField="descricaoEvento" caption="Descrição"></dxi-column>
+            <dxi-column dataField="participantes" caption="Descrição"></dxi-column>
             <dxi-column dataField="tipoEvento" caption="Tipo do Evento" dataType="number">
-              <!--<dxo-lookup
-                [dataSource]="tipoEventoData"
-                valueExpr="Value"
-                displayExpr="Text"
-              ></dxo-lookup> -->
+<!--              <dxo-lookup-->
+<!--                [dataSource]="tipoEventoData"-->
+<!--                valueExpr="id"-->
+<!--                displayExpr="Text"-->
+<!--              ></dxo-lookup>-->
             </dxi-column>
+<!--            <dxo-summary>-->
+<!--              <dxi-total-item column="nomeEvento" summaryType="Eventos Casdastros"> </dxi-total-item>-->
+<!--            </dxo-summary>-->
           </dx-data-grid>
 
 
