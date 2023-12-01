@@ -39,6 +39,13 @@
     },
     {
       "id": 8
+    },
+    {
+      "nome": "mateus",
+      "setor": 1,
+      "user": "mateus",
+      "password": "123",
+      "id": 9
     }
   ]
 }

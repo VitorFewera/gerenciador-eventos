@@ -1,13 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, NgModule, Output } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { DxFormModule } from 'devextreme-angular/ui/form';
-import { DxLoadIndicatorModule } from 'devextreme-angular/ui/load-indicator';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, NgModule, Output} from '@angular/core';
+import {Router, RouterModule} from '@angular/router';
+import {DxFormModule} from 'devextreme-angular/ui/form';
+import {DxLoadIndicatorModule} from 'devextreme-angular/ui/load-indicator';
 import notify from 'devextreme/ui/notify';
-import { AuthService } from '../../services';
-import { FormsModule } from '@angular/forms';
-import { ParticipantesModel } from '../../../models/ParticipantesModel.model';
-import { DxTextBoxModule } from 'devextreme-angular';
+import {AuthService} from '../../services';
+import {FormsModule} from '@angular/forms';
+import {ParticipantesModel} from '../../../models/ParticipantesModel.model';
+import {DxTextBoxModule} from 'devextreme-angular';
 import Swal from 'sweetalert2';
 
 
@@ -29,20 +29,29 @@ export class LoginFormComponent {
   logIn() {
     this.authService.logIn(this.user.user, this.user.password).subscribe(
       (retorno) => {
-         if (retorno.passou) {
+        if (retorno.passou) {
           console.log('Login bem-sucedido', retorno);
-          console.log('o loggedIn chega assim: ',this.authService.loggedIn);
+          console.log('o loggedIn chega assim: ', this.authService.loggedIn);
           this.router.navigate(['/home']);
         } else {
           console.log('Login falhou', retorno);
           this.authService.retornoLog = null;
-          Swal.fire({
-             position: "top-end",
-             icon: "error",
-             title: "`Login ou Senha incorretos`",
-             showConfirmButton: false,
-             timer: 2000
-           });
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: false,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: "Erro ao realizar o login"
+          });
+
         }
       },
       (error) => {
@@ -54,7 +63,7 @@ export class LoginFormComponent {
   onCreateAccountClick = () => {
     this.router.navigate(['/create-account']);
   };
- }
+}
 
 @NgModule({
   imports: [
@@ -68,4 +77,5 @@ export class LoginFormComponent {
   declarations: [LoginFormComponent],
   exports: [LoginFormComponent],
 })
-export class LoginFormModule {}
+export class LoginFormModule {
+}

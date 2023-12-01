@@ -14,6 +14,7 @@ import {FormsModule} from "@angular/forms";
 import {DxoTextModule} from "devextreme-angular/ui/nested";
 import {ParticipantesModel} from "../../../models/ParticipantesModel.model";
 import {NewEventServiceAPI} from "../../services/new-event.service";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -57,34 +58,26 @@ export class CreateAccountFormComponent {
     mode: 'password'
   }
 
-  /* estudar depois
-  async onSubmit(e: Event) {
-    console.log(this.user);
-    e.preventDefault();
-
-    this.user = this.formData;
-    console.log(this.user, this.formData);
-    this.loading = true;
-
-    const result = await this.authService.createAccount(this.user.id, this.user.senha, this.user.login, this.user.nome, this.user.setor, this.user.email, this.user.image);
-    console.log(result, this.user, this.formData);
-    this.loading = false;
-
-    if (result.isOk) {
-      this.router.navigate(['/login-form']);
-    } else {
-      notify(result.message, 'error', 2000);
-    }
-  }
-
-  confirmPassword = (e: ValidationCallbackData) => {
-    return e.value === this.user.senha;
-  }*/
 
   cadastrarParticipante(participante: ParticipantesModel){
     console.log(participante);
     this.service.adicionarParticipante(participante).subscribe(
       () =>  console.log(participante) );
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 4000,
+      timerProgressBar: false,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "success",
+      title: "Usuario cadastrado!"
+    });
     this.router.navigate(['/login-form'])
   }
 
