@@ -20,15 +20,25 @@ export class HomeComponent implements OnInit {
 
   mostrarEvento: EventsModel[] = [];
 
+  mostrarUsuario: ParticipantesModel[] = [];
+
   popupVisible = false;
 
   texto: string = 'Informe seus dados: ';
 
   navegar: any = [];
 
-  userData = localStorage.getItem('userData');
 
-  constructor(private service: NewEventServiceAPI, private serviceAuth: AuthService, private router: Router) {}
+  constructor(private service: NewEventServiceAPI, private authService: AuthService, private router: Router) {
+    const urlString = localStorage.getItem('user');
+    console.log(urlString);
+    const url = JSON.parse(urlString)
+    console.log('log do component, antes do service: ',url)
+    this.authService.exibirUsuario(url).subscribe((usuario: ParticipantesModel[]) => {
+      console.log('log do component: ',usuario);
+      this.mostrarUsuario = usuario;
+    })
+  }
 
   ngOnInit(): void {
     this.service.retornoEvento().subscribe((evento: EventsModel[]) => {
@@ -47,13 +57,10 @@ export class HomeComponent implements OnInit {
     return this.popupVisible = false;
   }
 
-  partiparEvento(idEvento: number, idParticipante: string){
+  partiparEvento(idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string){
     console.log(idEvento, idParticipante)
-    const receberJSON = localStorage.getItem('user')
-    const idPar = JSON.parse(receberJSON);
-    idParticipante = idPar.valueOf();
-    console.log("idParticipante depois do JSON.parse", idParticipante)
-    this.service.adicionarParticipanteEvento(idEvento,idParticipante).subscribe(
+
+    this.service.adicionarParticipanteEvento(idEvento,idParticipante,nomeParticipante,setorParticipante).subscribe(
       (passando) => console.log(passando)
     )
   }

@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
 
-  user: ParticipantesEventsModel;
+  mostrarUsuario: ParticipantesModel[] = [];
 
   userMenuItems = [{
     text: 'Perfil',
@@ -42,7 +42,16 @@ export class HeaderComponent implements OnInit {
     }
   }];
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+    const urlString = localStorage.getItem('user');
+    console.log(urlString);
+    const url = JSON.parse(urlString)
+    console.log('log do component, antes do service: ',url)
+    this.authService.exibirUsuario(url).subscribe((usuario: ParticipantesModel[]) => {
+      console.log('log do component: ',usuario);
+      this.mostrarUsuario = usuario;
+    })
+  }
 
   ngOnInit() {
  //   this.authService.getUser().then((e) => this.user = e.data);

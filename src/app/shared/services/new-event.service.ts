@@ -30,19 +30,14 @@ export class NewEventServiceAPI {
     return this.httpClient.post<any>(this.apiEventos, evento);
   }
 
-  testeUpdate(testeId: number, informacao: any) {
-    const url = `${this.apiEventos}/${testeId}`;
-    console.log("chegou service " + url + testeId, informacao)
-    return this.httpClient.patch(url, informacao);
-  }
-
   adicionarParticipante(participantes: ParticipantesModel): Observable<any> {
     console.log("Participante: " + participantes);
     return this.httpClient.post<any>(this.apiParticipantes, participantes);
   }
 
 
-  adicionarParticipanteEvento(idEvento: number, idParticipante: string): Observable<any> {
+  adicionarParticipanteEvento
+  (idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string): Observable<any> {
     const url = `${this.apiEventos}/${idEvento}`;
     console.log('url no service: ', url)
     //a copia
@@ -50,8 +45,8 @@ export class NewEventServiceAPI {
     //insert
     const novoParticipante: ParticipantesEventsModel = {
       idParticipante: idParticipante,
-      nome: '',
-      setor: '',
+      nome: nomeParticipante,
+      setor: setorParticipante,
     };
     console.log('novo participante: ', novoParticipante)
 

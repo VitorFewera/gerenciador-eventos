@@ -39,6 +39,7 @@
 
   <div *dxTemplate="let data of 'content'">
     <div class="d-flex justify-content-center">
+
       <p>
         <span class="textoCard">{{ cardEvento.dataEvento }}</span>
       </p>
@@ -50,14 +51,19 @@
       Localização: <span class="textoCard">{{cardEvento.enderecoEvento}}</span>
     </p>
 
-    <p>
 
+    <div *ngFor="let usuario of mostrarUsuario">
       <dxi-item dataField="participantesEvento" class="mt-5">
-        <dx-select-box label="Participantes, até o momento" [dataSource]="cardEvento.participantes">
+
+        <dx-select-box
+          label="Participantes"
+          [dataSource]="cardEvento.participantes"
+          displayExpr="{{participante}}"
+        >
         </dx-select-box>
 
       </dxi-item>
-    </p>
+
 
     <div class="buttons-demo mt-5 ">
       <div class="container">
@@ -67,7 +73,7 @@
             text="Partipar"
             type="default"
             [width]="100"
-            (click)="partiparEvento(cardEvento.id,participante.idParticipante)"
+            (click)="partiparEvento(cardEvento.id,usuario.id, usuario.nome, usuario.setor)"
           >
           </dx-button>
 
@@ -82,7 +88,7 @@
       </div>
     </div>
 
-
+    </div>
   </div>
 </dx-popup>
 

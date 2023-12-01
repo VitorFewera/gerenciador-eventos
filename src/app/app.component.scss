@@ -8,6 +8,8 @@
 
 .footer{
   display: flex;
-  align-self: baseline;
-  justify-content: end;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: flex-end;
+  align-self: flex-end;
 }

@@ -8,6 +8,8 @@ import { AuthService } from '../../services';
 import { FormsModule } from '@angular/forms';
 import { ParticipantesModel } from '../../../models/ParticipantesModel.model';
 import { DxTextBoxModule } from 'devextreme-angular';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-login-form',
@@ -34,7 +36,13 @@ export class LoginFormComponent {
         } else {
           console.log('Login falhou', retorno);
           this.authService.retornoLog = null;
-          notify(`Login ou Senha incorretos`);
+          Swal.fire({
+             position: "top-end",
+             icon: "error",
+             title: "`Login ou Senha incorretos`",
+             showConfirmButton: false,
+             timer: 2000
+           });
         }
       },
       (error) => {

@@ -9,9 +9,9 @@
       "id": 1,
       "participantes": [
         {
-          "idParticipante": "http://localhost:3001/participantes?user=ferreira&password=123",
-          "nome": "",
-          "setor": ""
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
         }
       ]
     },
@@ -24,43 +24,41 @@
       "id": 2,
       "participantes": [
         {
-          "idParticipante": "2",
-          "nome": "",
-          "setor": ""
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
         },
         {
-          "idParticipante": "2",
-          "nome": "",
-          "setor": ""
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
         }
       ]
     },
     {
-      "participantes": [],
+      "participantes": [
+        {
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
+        },
+        {
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
+        },
+        {
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
+        }
+      ],
       "nomeEvento": "teste",
       "enderecoEvento": "teste",
       "tipoEvento": 2,
       "dataEvento": "30/11/2023",
       "descricaoEvento": "teste",
       "id": 3
-    },
-    {
-      "participantes": [],
-      "nomeEvento": "Evento completo",
-      "enderecoEvento": "completo",
-      "tipoEvento": 1,
-      "dataEvento": "22/11/2023",
-      "descricaoEvento": "completo",
-      "id": 4
-    },
-    {
-      "participantes": [],
-      "nomeEvento": "teste",
-      "enderecoEvento": "teste",
-      "tipoEvento": 1,
-      "dataEvento": "07/11/2023",
-      "descricaoEvento": "teste",
-      "id": 5
     }
   ]
 }

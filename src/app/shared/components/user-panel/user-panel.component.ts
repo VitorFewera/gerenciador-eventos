@@ -21,7 +21,7 @@ export class UserPanelComponent {
   menuMode!: string;
 
   @Input()
-  user!: ParticipantesEventsModel;
+  user!: ParticipantesModel;
 
   constructor() {}
 }

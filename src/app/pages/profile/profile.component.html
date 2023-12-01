@@ -1,23 +1,39 @@
 <div class="d-flex justify-content-around">
-  <h2>Perfil</h2>
+  <h2>Perfil do Usuário</h2>
 </div>
 
 <div class="container">
   <div class="content-block dx-card responsive-paddings row">
     <div class="row justify-content-md-center">
-      <div class="form-avatar row">
-        <img class="img-fluid" src="{{user}}"/>
-      </div>
-      <br>
-    </div>
-    <div class="col">
-      <dx-form id="form"
-               [formData]="user"
-               labelLocation="top"
-               [colCountByScreen]="colCountByScreen"
-      >
+
+      <div *ngFor="let usuario of mostrarUsuario">
+
+      <dx-form [colCount]="2" [labelMode]="labelFloating" >
+
+        <dxi-item >
+          <dx-text-box [value]="usuario.nome" [readOnly]="true" label="Nome do Usuario"></dx-text-box>
+        </dxi-item>
+
+        <dxi-item>
+          <dx-select-box
+            label="Setor"
+            [value]="usuario.setor"
+            [dataSource]="setores"
+            displayExpr="name"
+            valueExpr="id"
+            [readOnly]="true"
+          >
+          </dx-select-box>
+        </dxi-item>
+
+        <dxi-item>
+          <dx-text-box [value]="usuario.user" [readOnly]="true"  label="Login de acesso"></dx-text-box>
+        </dxi-item>
+
+
       </dx-form>
+
+      </div>
     </div>
   </div>
-
 </div>

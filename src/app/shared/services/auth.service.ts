@@ -3,9 +3,8 @@ import {CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTre
 import {ParticipantesModel} from '../../models/ParticipantesModel.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import DevExpress from 'devextreme';
 import {map} from 'rxjs/operators';
-import {ParticipantesEventsModel} from 'src/app/models/participantes.model';
+
 
 const defaultPath = '/';
 
@@ -44,6 +43,10 @@ export class AuthService {
       `${this.apiParticipantes}?user=${login}&password=${password}`);
   }
 
+  exibirUsuario(url: string): Observable<any>{
+    console.log('logo da service: ',url);
+    return this.httpClient.get<ParticipantesModel[]>(url);
+  }
 
 
   async logOut() {
