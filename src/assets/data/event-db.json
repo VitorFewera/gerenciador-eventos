@@ -1,64 +1,13 @@
 {
   "eventos": [
     {
-      "nomeEvento": "Volei ",
-      "enderecoEvento": "Quadra de volei em Mirassol",
-      "tipoEvento": 1,
-      "dataEvento": "02/11/2023",
-      "descricaoEvento": "Partida de volei, com o pessoal do setor",
-      "id": 1,
-      "participantes": [
-        {
-          "idParticipante": 9,
-          "nome": "mateus",
-          "setor": 1
-        }
-      ]
-    },
-    {
-      "nomeEvento": "Churrasco",
-      "enderecoEvento": "Alojamento Fiorilli",
-      "tipoEvento": 2,
-      "dataEvento": "03/11/2023",
-      "descricaoEvento": "Churrasco do setor  do SIA no alojamento",
-      "id": 2,
-      "participantes": [
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        },
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        }
-      ]
-    },
-    {
-      "participantes": [
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        },
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        },
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        }
-      ],
+      "participantes": [],
       "nomeEvento": "teste",
       "enderecoEvento": "teste",
-      "tipoEvento": 2,
-      "dataEvento": "30/11/2023",
-      "descricaoEvento": "teste",
-      "id": 3
+      "tipoEvento": 1,
+      "dataEvento": "12/02/2022",
+      "descricaoEvento": "123",
+      "id": 1
     }
   ]
 }

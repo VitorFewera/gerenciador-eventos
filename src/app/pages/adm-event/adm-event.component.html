@@ -23,20 +23,28 @@
             </dxo-editing>
 
             <dxi-column dataField="nomeEvento" caption="Nome"></dxi-column>
-            <dxi-column dataField="dataEvento" caption="Data" dataType="date"></dxi-column>
+            <dxi-column dataField="dataEvento" caption="Data" dataType="date" >
+
+            </dxi-column>
             <dxi-column dataField="enderecoEvento" caption="Endereço"></dxi-column>
             <dxi-column dataField="descricaoEvento" caption="Descrição"></dxi-column>
-            <dxi-column dataField="participantes" caption="Descrição"></dxi-column>
-            <dxi-column dataField="tipoEvento" caption="Tipo do Evento" dataType="number">
-<!--              <dxo-lookup-->
-<!--                [dataSource]="tipoEventoData"-->
-<!--                valueExpr="id"-->
-<!--                displayExpr="Text"-->
-<!--              ></dxo-lookup>-->
+            <dxi-column dataField="participantes" caption="Descrição">
+              <dxo-lookup
+                [dataSource]="participantesEventoData"
+                valueExpr="idParticipante"
+                displayExpr="nome"
+              ></dxo-lookup>
             </dxi-column>
-<!--            <dxo-summary>-->
-<!--              <dxi-total-item column="nomeEvento" summaryType="Eventos Casdastros"> </dxi-total-item>-->
-<!--            </dxo-summary>-->
+            <dxi-column dataField="tipoEvento" caption="Tipo do Evento" dataType="number">
+              <!--              <dxo-lookup-->
+              <!--                [dataSource]="tipoEventoData"-->
+              <!--                valueExpr="id"-->
+              <!--                displayExpr="Text"-->
+              <!--              ></dxo-lookup>-->
+            </dxi-column>
+            <!--            <dxo-summary>-->
+            <!--              <dxi-total-item column="nomeEvento" summaryType="Eventos Casdastros"> </dxi-total-item>-->
+            <!--            </dxo-summary>-->
           </dx-data-grid>
 
 

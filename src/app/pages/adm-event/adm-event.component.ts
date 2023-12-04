@@ -9,6 +9,9 @@ import {
 import CustomStore from 'devextreme/data/custom_store';
 import {lastValueFrom} from 'rxjs/internal/lastValueFrom';
 import {formatDate} from 'devextreme/localization';
+import DevExpress from "devextreme";
+import data = DevExpress.data;
+import {DateUtils} from "../../shared/pipe/date-utils";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -31,9 +34,9 @@ export class AdmEventComponent implements OnInit {
 
   eventosCadastrados: any;
 
-  evento: EventsModel = new EventsModel();
+  evento: EventsModel //= new EventsModel();
 
-  mostrarEvento: EventsModel[] ;
+  participantesEventoData: any;
 
   customersData: any;
 
@@ -52,17 +55,34 @@ export class AdmEventComponent implements OnInit {
     this.refreshMode = 'reshape';
     this.refreshModes = ['full', 'reshape', 'repaint'];
 
+
+
     this.eventosCadastrados = new CustomStore({
       key: 'id',
       load: () => this.sendRequest(`${this.url}`),
-      update: (key, values) => this.sendRequest(`${this.url}/`, 'PUT', {
+      update: (key, values) => {
+
+        console.log('Valor do update: ',values)
+        this.evento.dataEvento = formatDate(new Date(), 'dd/MM/yyyy');
+       // this.evento.dataEvento = DateUtils.toLocaleDate(this.evento.dataEvento)
+
+        console.log('Valor da dataEvento: ',this.evento.dataEvento)
+
+
+        return this.sendRequest(`${this.url}/${key}`, 'PUT', {
         key,
-        values: JSON.stringify(values),
-      }),
-      remove: (key) => this.sendRequest(`${this.url}/id`, 'DELETE', {
+        values
+      })},
+      remove: (key) => this.sendRequest(`${this.url}/${key}`, 'DELETE', {
         key,
       }),
     });
+
+    this.participantesEventoData =  new CustomStore({
+        key: 'idParticipante',
+        loadMode: 'raw',
+        load: () => this.sendRequest(`${this.url}/`),
+      })
 
 
     this.tipoEventoData = new CustomStore({
@@ -71,6 +91,7 @@ export class AdmEventComponent implements OnInit {
       load: () => this.sendRequest(`${this.url}/tipoEvento`),
     });
   }
+
 
   sendRequest(url, method = 'GET', data: any = {}): any {
     this.logRequest(method, url, data);
@@ -98,7 +119,7 @@ export class AdmEventComponent implements OnInit {
     console.log('dentro do sendResquest: ', result);
 
     return lastValueFrom(result)
-      .then((data: any) => (method === 'GET' ? data.data : data))
+      .then((data: any) => data)
       .catch((e) => {
         throw e && e.error && e.error.Message;
       });

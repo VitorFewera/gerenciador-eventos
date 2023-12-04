@@ -51,19 +51,6 @@ export class NewEventComponent implements OnDestroy, OnInit {
 
 
   cadastroEvento(evento: EventsModel) {
-    /*
-    Como é feito na fiorilli, migrar depois
-     const batatas = new Array<EventsModel>();
-    const bata = new EventsModel();
-    bata.dataEvento = this.evento.dataEvento;
-    bata.nomeEvento = this.evento.nomeEvento;
-    //bata.tipoEvento = this.evento.tipoEvento;
-
-    this.eventos = [evento];
-    batatas.push(bata);
-    console.log('ARRAY AQUI', batatas)
-    console.log('obj', bata);
-     */
 
     //Fazer com que os campo do formulario venha sem validação
     if (!this.myform.instance.validate().isValid) {
@@ -71,6 +58,7 @@ export class NewEventComponent implements OnDestroy, OnInit {
     }
 
     evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
+
     this.newEventServiceAPI.cadastroEvento(evento).subscribe(
       () => {
         console.log('PASSOU', evento);

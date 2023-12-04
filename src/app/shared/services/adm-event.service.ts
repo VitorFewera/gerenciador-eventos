@@ -19,7 +19,7 @@ export class AdmEventService {
   }
 
   alteraEvento(evento: EventsModel): Observable<any>{
-    const url =`${this.apiEventos}\${evento.id}`;
+    const url =`${this.apiEventos}/${evento.id}`;
     return this.httpClient.patch(url,evento );
   }
 
