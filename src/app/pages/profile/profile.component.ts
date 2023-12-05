@@ -7,6 +7,7 @@ import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
 import {AuthService} from "../../shared/services";
 import {EventsModel} from "../../models/events.model";
+import {Router} from "@angular/router";
 
 @Component({
   templateUrl: 'profile.component.html',
@@ -20,6 +21,8 @@ export class ProfileComponent {
 
   labelFloating: string;
 
+  usuario: ParticipantesModel = new ParticipantesModel();
+
   setores = [
     {id: 1, name: 'SIA'},
     {id: 2, name: 'SCPI'},
@@ -32,7 +35,7 @@ export class ProfileComponent {
   ]
 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     const urlString = localStorage.getItem('user');
     console.log(urlString);
     const url = JSON.parse(urlString)
@@ -44,4 +47,10 @@ export class ProfileComponent {
     this.labelFloating = 'floating';
 
   }
+
+
+  voltar(){
+    this.router.navigate(['/home'])
+  }
+
 }

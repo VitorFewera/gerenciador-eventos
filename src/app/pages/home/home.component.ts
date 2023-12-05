@@ -6,6 +6,7 @@ import {EventsModel} from "../../models/events.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
 import {AuthService} from "../../shared/services";
+import Swal from "sweetalert2";
 
 @Component({
   templateUrl: 'home.component.html',
@@ -63,6 +64,17 @@ export class HomeComponent implements OnInit {
     this.service.adicionarParticipanteEvento(idEvento,idParticipante,nomeParticipante,setorParticipante).subscribe(
       (passando) => console.log(passando)
     )
+    this.fecharPopup();
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+      width: 500,
+      html: '<span style="font-size: 20px;">Participação aplicada com Sucesso!</span>',
+    });
+
   }
 
   administrar(){

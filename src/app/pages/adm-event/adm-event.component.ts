@@ -1,4 +1,4 @@
-import {Component, enableProdMode, ChangeDetectionStrategy, OnInit} from '@angular/core';
+import {Component, enableProdMode, ChangeDetectionStrategy, OnInit, NgModule, LOCALE_ID} from '@angular/core';
 import {AdmEventService} from "../../shared/services/adm-event.service";
 import {EventsModel} from "../../models/events.model";
 import {BrowserModule} from '@angular/platform-browser';
@@ -12,6 +12,20 @@ import {formatDate} from 'devextreme/localization';
 import DevExpress from "devextreme";
 import data = DevExpress.data;
 import {DateUtils} from "../../shared/pipe/date-utils";
+import {CommonModule} from "@angular/common";
+import {RouterModule} from "@angular/router";
+import {DxFormModule} from "devextreme-angular/ui/form";
+import {DxLoadIndicatorModule} from "devextreme-angular/ui/load-indicator";
+import {
+  DxButtonModule, DxDataGridModule,
+  DxFileUploaderModule,
+  DxProgressBarModule,
+  DxSelectBoxModule,
+  DxTextBoxModule
+} from "devextreme-angular";
+import {FormsModule} from "@angular/forms";
+import {DxoTextModule} from "devextreme-angular/ui/nested";
+import {CreateAccountFormComponent} from "../../shared/components";
 
 if (!/localhost/.test(document.location.host)) {
   enableProdMode();
@@ -34,7 +48,7 @@ export class AdmEventComponent implements OnInit {
 
   eventosCadastrados: any;
 
-  evento: EventsModel //= new EventsModel();
+  evento: EventsModel = new EventsModel();
 
   participantesEventoData: any;
 
@@ -48,6 +62,8 @@ export class AdmEventComponent implements OnInit {
 
   requests: string[] = [];
 
+  meuPipe = DateUtils.toLocaleDate(this.evento.dataEvento);
+
   private url = 'http://localhost:3000/eventos';
 
   constructor(private http: HttpClient) {
@@ -55,34 +71,33 @@ export class AdmEventComponent implements OnInit {
     this.refreshMode = 'reshape';
     this.refreshModes = ['full', 'reshape', 'repaint'];
 
-
-
     this.eventosCadastrados = new CustomStore({
+
       key: 'id',
       load: () => this.sendRequest(`${this.url}`),
       update: (key, values) => {
 
-        console.log('Valor do update: ',values)
-        this.evento.dataEvento = formatDate(new Date(), 'dd/MM/yyyy');
-       // this.evento.dataEvento = DateUtils.toLocaleDate(this.evento.dataEvento)
+        console.log('Valor do update: ', values)
+        //this.evento.dataEvento = formatDate(new Date(), 'dd/MM/yyyy');
+        values = DateUtils.toLocaleDate(this.evento.dataEvento)
 
-        console.log('Valor da dataEvento: ',this.evento.dataEvento)
-
+        console.log('Valor da dataEvento: ', this.evento.dataEvento)
 
         return this.sendRequest(`${this.url}/${key}`, 'PUT', {
-        key,
-        values
-      })},
+          key,
+          values,
+        })
+      },
       remove: (key) => this.sendRequest(`${this.url}/${key}`, 'DELETE', {
         key,
       }),
     });
 
-    this.participantesEventoData =  new CustomStore({
-        key: 'idParticipante',
-        loadMode: 'raw',
-        load: () => this.sendRequest(`${this.url}/`),
-      })
+    this.participantesEventoData = new CustomStore({
+      key: 'idParticipante',
+      loadMode: 'raw',
+      load: () => this.sendRequest(`${this.url}/`),
+    })
 
 
     this.tipoEventoData = new CustomStore({
@@ -139,3 +154,4 @@ export class AdmEventComponent implements OnInit {
 
 
 }
+

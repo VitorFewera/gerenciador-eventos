@@ -4,15 +4,15 @@
 }
 
 .fechar{
-  background-color: white;
-  color: black;
-  box-shadow: black;
+  background-color: white !important;
+  color: black !important;
+  box-shadow: black !important;
 }
 
 .limpar{
-  background-color: #EAEAEA;
-  color: #626262;
-  box-shadow: black;
+  background-color: #EAEAEA !important;
+  color: #626262 !important;
+  box-shadow: black !important;
 }
 
 .lineButton{
@@ -26,4 +26,13 @@ dx-button{
   margin: 1%;
 }
 
+.dx-button.dx-state-hover {
+  background-color: #006b61;
+}
+.dx-button.dx-state-focused {
+  background-color: #006b61;
+}
+.dx-button.dx-state-active {
+  background-color: #006b61;
+}
 

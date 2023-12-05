@@ -1,3 +1,5 @@
+<div *ngIf="mostrarEvento.length else errado">
+
 <h2 class="m-5 justify-content-center">Eventos Abertos</h2>
 
 <div class="container flex-column cardEventos">
@@ -93,11 +95,11 @@
 </dx-popup>
 
 
-<div *ngIf="mostrarEvento.length != 0 else errado">
+
 </div>
 <ng-template #errado>
-  <h3>
-    Nenhum evento Cadastrado
-  </h3>
+  <h2 class="m-5 justify-content-center">
+    Nenhum evento cadastrado no momento.
+  </h2>
 </ng-template>
 

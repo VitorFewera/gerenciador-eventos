@@ -80,3 +80,6 @@ $colorButton: transparentize(black, 0.5);
   font-weight: bolder;
 
 }
+.swal2-toast {
+ z-index: 10000;
+}
