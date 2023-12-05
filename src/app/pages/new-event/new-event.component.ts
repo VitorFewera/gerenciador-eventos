@@ -57,7 +57,7 @@ export class NewEventComponent implements OnDestroy, OnInit {
       return
     }
 
-    evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
+   // evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
 
     this.newEventServiceAPI.cadastroEvento(evento).subscribe(
       () => {

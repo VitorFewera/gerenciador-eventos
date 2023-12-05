@@ -1,3 +1,19 @@
 {
-  "eventos": []
+  "eventos": [
+    {
+      "participantes": [
+        {
+          "idParticipante": 3,
+          "nome": "teste",
+          "setor": 3
+        }
+      ],
+      "nomeEvento": "teste",
+      "enderecoEvento": "testeaees",
+      "tipoEvento": 3,
+      "dataEvento": "2023-12-14T03:00:00.000Z",
+      "descricaoEvento": "testette",
+      "id": 1
+    }
+  ]
 }
