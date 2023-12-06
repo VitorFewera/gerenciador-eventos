@@ -3,17 +3,17 @@
     {
       "participantes": [
         {
-          "idParticipante": 3,
-          "nome": "teste",
-          "setor": 3
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
         }
       ],
+      "id": 1,
       "nomeEvento": "teste",
-      "enderecoEvento": "testeaees",
-      "tipoEvento": 3,
-      "dataEvento": "2023-12-14T03:00:00.000Z",
-      "descricaoEvento": "testette",
-      "id": 1
+      "dataEvento": "2023-12-06T03:00:00.000Z",
+      "enderecoEvento": "teste",
+      "descricaoEvento": "teste",
+      "tipoEvento": 2
     }
   ]
 }

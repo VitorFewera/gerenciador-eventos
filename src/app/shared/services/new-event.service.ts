@@ -41,7 +41,14 @@ export class NewEventServiceAPI {
     const url = `${this.apiEventos}/${idEvento}`;
     console.log('url no service: ', url)
     //a copia
-    const eventoComNovoParticipante = {...this.evento};
+    const eventoComNovoParticipante = JSON.parse(JSON.stringify(this.evento));
+
+    console.log('eventoComNovoParticipante: ', eventoComNovoParticipante)
+
+    if (!eventoComNovoParticipante.participantes) {
+      eventoComNovoParticipante.participantes = [];
+    }
+
     //insert
     const novoParticipante: ParticipantesEventsModel = {
       idParticipante: idParticipante,
@@ -53,7 +60,7 @@ export class NewEventServiceAPI {
     eventoComNovoParticipante.participantes.push(novoParticipante);
     console.log('passou o participante - ', eventoComNovoParticipante)
 
-    return this.httpClient.patch(url, eventoComNovoParticipante);
+    return this.httpClient.patch(url, { participantes: eventoComNovoParticipante.participantes });
   }
 
 }

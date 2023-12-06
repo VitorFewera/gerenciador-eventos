@@ -46,6 +46,13 @@
       "user": "mateus",
       "password": "123",
       "id": 9
+    },
+    {
+      "nome": "Hugo",
+      "setor": 4,
+      "user": "hugo",
+      "password": "123",
+      "id": 10
     }
   ]
 }

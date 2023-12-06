@@ -9,7 +9,7 @@
            [ngClass]="{'tipoUm':evento.tipoEvento == 1, 'tipoDois': evento.tipoEvento == 2, 'tipoTres': evento.tipoEvento == 3}">
         <div class="textCard">
           <span>{{evento.nomeEvento}}</span> <br/>
-          <span>{{evento.dataEvento}}</span> <br/>
+          <span>{{evento.dataEvento | date}}</span> <br/>
           <span>{{evento.descricaoEvento}}</span> <br/>
           <div class="d-flex mt-3 justify-content-between">
             <dx-button class="buttonCard" text="Participar" (click)="popup(evento)"></dx-button>
