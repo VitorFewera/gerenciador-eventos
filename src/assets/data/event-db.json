@@ -1,7 +1,18 @@
 {
   "eventos": [
     {
-      "participantes": [],
+      "0": {
+        "idParticipante": 1,
+        "nome": "Vitor",
+        "setor": 1
+      },
+      "participantes": [
+        {
+          "idParticipante": 3,
+          "nome": "teste",
+          "setor": 3
+        }
+      ],
       "id": 1,
       "nomeEvento": "teste",
       "dataEvento": "2023-12-06T03:00:00.000Z",

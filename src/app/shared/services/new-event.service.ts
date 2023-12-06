@@ -4,9 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {EventsModel} from "../../models/events.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
-import { switchMap } from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
 
-import { cloneDeep } from 'lodash';
+import {cloneDeep} from 'lodash';
 
 
 @Injectable({
@@ -38,32 +38,50 @@ export class NewEventServiceAPI {
     return this.httpClient.post<any>(this.apiParticipantes, participantes);
   }
 
+  //
+  // adicionarParticipanteEvento
+  // (idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string): Observable<any> {
+  //   const url = `${this.apiEventos}/${idEvento}`;
+  //   console.log('url no service: ', url)
+  //   console.log('this.evento.participantes: ', this.evento.participantes.length)
+  //   const eventoComNovoParticipante = {...this.evento};
+  //   console.log('eventoComNovoParticipante: ', eventoComNovoParticipante)
+  //   const novoParticipante: ParticipantesEventsModel = {
+  //     idParticipante: idParticipante,
+  //     nome: nomeParticipante,
+  //     setor: setorParticipante,
+  //   };
+  //   console.log('novo participante: ', novoParticipante)
+  //   eventoComNovoParticipante.participantes.push(novoParticipante);
+  //   if (!eventoComNovoParticipante.participantes) {
+  //     console.log('nao tem nada no ', eventoComNovoParticipante)
+  //     eventoComNovoParticipante.participantes = [];
+  //   }
+  //   console.log('passou o participante - ', eventoComNovoParticipante)
+  //   return this.httpClient.patch(url, eventoComNovoParticipante);
+  // }
+
 
   adicionarParticipanteEvento
   (idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string): Observable<any> {
     const url = `${this.apiEventos}/${idEvento}`;
     console.log('url no service: ', url)
-
     console.log('this.evento.participantes: ', this.evento.participantes.length)
-
-    const eventoComNovoParticipante = {...this.evento};
-
-    console.log('eventoComNovoParticipante: ', eventoComNovoParticipante)
-
-
+    //const eventoComNovoParticipante = {...this.evento};
+    console.log('eventoComNovoParticipante: ', this.evento)
     const novoParticipante: ParticipantesEventsModel = {
       idParticipante: idParticipante,
       nome: nomeParticipante,
       setor: setorParticipante,
     };
     console.log('novo participante: ', novoParticipante)
-
-    eventoComNovoParticipante.participantes.push(novoParticipante);
-
-    console.log('passou o participante - ', eventoComNovoParticipante)
-
-    return this.httpClient.patch(url, eventoComNovoParticipante);
-
+    this.evento.participantes.push(novoParticipante);
+    if (!this.evento.participantes) {
+      console.log('nao tem nada no ', this.evento)
+      this.evento.participantes = [];
+    }
+    console.log('passou o participante - ', this.evento.participantes)
+    return this.httpClient.patch(url, this.evento.participantes);
   }
 
 }
