@@ -58,12 +58,13 @@ export class HomeComponent implements OnInit {
     return this.popupVisible = false;
   }
 
-  partiparEvento(idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string){
-    console.log(idEvento, idParticipante)
-
-    this.service.adicionarParticipanteEvento(idEvento,idParticipante,nomeParticipante,setorParticipante).subscribe(
-      (passando) => console.log(passando)
-    )
+  partiparEvento(usuario: ParticipantesModel): void{
+    this.cardEvento.participantes.push({
+      idParticipante: usuario.id,
+      nome: usuario.nome,
+      setor: usuario.setor,
+    });
+    this.service.adicionarParticipanteEvento(this.cardEvento).subscribe();
     this.fecharPopup();
 
     Swal.fire({

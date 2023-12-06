@@ -11,6 +11,26 @@
           "idParticipante": 3,
           "nome": "teste",
           "setor": 3
+        },
+        {
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
+        },
+        {
+          "idParticipante": 10,
+          "nome": "Hugo",
+          "setor": 4
+        },
+        {
+          "idParticipante": 3,
+          "nome": "teste",
+          "setor": 3
+        },
+        {
+          "idParticipante": 1,
+          "nome": "Vitor",
+          "setor": 1
         }
       ],
       "id": 1,
@@ -21,18 +41,7 @@
       "tipoEvento": 2
     },
     {
-      "participantes": [
-        {
-          "idParticipante": 10,
-          "nome": "Hugo",
-          "setor": 4
-        },
-        {
-          "idParticipante": 10,
-          "nome": "Hugo",
-          "setor": 4
-        }
-      ],
+      "participantes": [],
       "nomeEvento": "teste 2 ",
       "enderecoEvento": "teste",
       "tipoEvento": 1,

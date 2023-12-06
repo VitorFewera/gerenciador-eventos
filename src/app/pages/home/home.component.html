@@ -41,7 +41,7 @@
     <div class="d-flex justify-content-center">
 
       <p>
-        <span class="textoCard">{{ cardEvento.dataEvento }}</span>
+        <span class="textoCard">{{ cardEvento.dataEvento | date }}</span>
       </p>
     </div>
     <p>
@@ -58,7 +58,8 @@
         <dx-select-box
           label="Participantes"
           [dataSource]="cardEvento.participantes"
-          displayExpr="{{cardEvento.participantes}}"
+          valueExpr="idParticipante"
+          displayExpr="nome"
         >
         </dx-select-box>
 
@@ -73,7 +74,7 @@
             text="Partipar"
             type="default"
             [width]="100"
-            (click)="partiparEvento(cardEvento.id,usuario.id, usuario.nome, usuario.setor)"
+            (click)="partiparEvento(usuario)"
           >
           </dx-button>
 
