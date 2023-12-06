@@ -29,7 +29,6 @@ export class HomeComponent implements OnInit {
 
   navegar: any = [];
 
-
   constructor(private service: NewEventServiceAPI, private authService: AuthService, private router: Router) {
     const urlString = localStorage.getItem('user');
     console.log(urlString);
@@ -39,6 +38,7 @@ export class HomeComponent implements OnInit {
       console.log('log do component: ',usuario);
       this.mostrarUsuario = usuario;
     })
+
   }
 
   ngOnInit(): void {
@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
   administrar(){
     this.router.navigate(['/adm-event']);
   }
+
 
 
 }

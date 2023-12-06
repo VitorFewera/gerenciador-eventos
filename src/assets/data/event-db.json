@@ -1,19 +1,33 @@
 {
   "eventos": [
     {
-      "participantes": [
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
-          "setor": 1
-        }
-      ],
+      "participantes": [],
       "id": 1,
       "nomeEvento": "teste",
       "dataEvento": "2023-12-06T03:00:00.000Z",
       "enderecoEvento": "teste",
       "descricaoEvento": "teste",
       "tipoEvento": 2
+    },
+    {
+      "participantes": [
+        {
+          "idParticipante": 10,
+          "nome": "Hugo",
+          "setor": 4
+        },
+        {
+          "idParticipante": 10,
+          "nome": "Hugo",
+          "setor": 4
+        }
+      ],
+      "nomeEvento": "teste 2 ",
+      "enderecoEvento": "teste",
+      "tipoEvento": 1,
+      "dataEvento": "2023-12-27T03:00:00.000Z",
+      "descricaoEvento": "teste",
+      "id": 2
     }
   ]
 }

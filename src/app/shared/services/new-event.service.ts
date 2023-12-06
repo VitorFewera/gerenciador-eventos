@@ -4,6 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {EventsModel} from "../../models/events.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
+import { switchMap } from 'rxjs/operators';
+
+import { cloneDeep } from 'lodash';
 
 
 @Injectable({
@@ -40,16 +43,14 @@ export class NewEventServiceAPI {
   (idEvento: number, idParticipante: number, nomeParticipante: string, setorParticipante: string): Observable<any> {
     const url = `${this.apiEventos}/${idEvento}`;
     console.log('url no service: ', url)
-    //a copia
-    const eventoComNovoParticipante = JSON.parse(JSON.stringify(this.evento));
+
+    console.log('this.evento.participantes: ', this.evento.participantes.length)
+
+    const eventoComNovoParticipante = {...this.evento};
 
     console.log('eventoComNovoParticipante: ', eventoComNovoParticipante)
 
-    if (!eventoComNovoParticipante.participantes) {
-      eventoComNovoParticipante.participantes = [];
-    }
 
-    //insert
     const novoParticipante: ParticipantesEventsModel = {
       idParticipante: idParticipante,
       nome: nomeParticipante,
@@ -58,9 +59,11 @@ export class NewEventServiceAPI {
     console.log('novo participante: ', novoParticipante)
 
     eventoComNovoParticipante.participantes.push(novoParticipante);
+
     console.log('passou o participante - ', eventoComNovoParticipante)
 
-    return this.httpClient.patch(url, { participantes: eventoComNovoParticipante.participantes });
+    return this.httpClient.patch(url, eventoComNovoParticipante);
+
   }
 
 }
