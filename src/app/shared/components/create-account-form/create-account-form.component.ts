@@ -27,7 +27,7 @@ export class CreateAccountFormComponent {
 
   loading = false;
 
-  formData: any = {};
+  formData = {};
 
   labelFloating: string;
 
@@ -79,14 +79,6 @@ export class CreateAccountFormComponent {
       title: "Usuario cadastrado!"
     });
     this.router.navigate(['/login-form'])
-  }
-
-  confirmPassword(): boolean{
-      if (this.user.password === this.confirmarSenha){
-        return true
-      }else{
-        return false;
-      }
   }
 
 }

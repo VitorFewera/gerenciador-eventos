@@ -5,12 +5,12 @@ import {AuthGuardService} from './shared/services';
 import {HomeComponent} from './pages/home/home.component';
 import {ProfileComponent} from './pages/profile/profile.component';
 import {
-  DxButtonModule,
-  DxDataGridModule,
-  DxFormModule,
-  DxPopupModule, DxSelectBoxModule,
-  DxTextAreaModule,
-  DxTextBoxModule
+    DxButtonModule,
+    DxDataGridModule,
+    DxFormModule,
+    DxPopupModule, DxScrollViewModule, DxSelectBoxModule,
+    DxTextAreaModule,
+    DxTextBoxModule
 } from 'devextreme-angular';
 import {NewEventComponent} from "./pages/new-event/new-event.component";
 import {FormsModule} from "@angular/forms";
@@ -63,7 +63,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true}), DxDataGridModule, DxFormModule, DxButtonModule, FormsModule, CommonModule, DxPopupModule, MatTabsModule, DxTextAreaModule, DxTextBoxModule, DxSelectBoxModule],
+    imports: [RouterModule.forRoot(routes, {useHash: true}), DxDataGridModule, DxFormModule, DxButtonModule, FormsModule, CommonModule, DxPopupModule, MatTabsModule, DxTextAreaModule, DxTextBoxModule, DxSelectBoxModule, DxScrollViewModule],
   providers: [AuthGuardService],
   exports: [RouterModule],
   declarations: [

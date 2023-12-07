@@ -23,7 +23,7 @@
         <dxi-validation-rule type="required" message="Informe o tipo do evento."></dxi-validation-rule>
       </dxi-item>
 
-      <dxi-item dataField="dateEvento">
+      <dxi-item dataField="dataEvento">
         <dx-date-box [(value)]="evento.dataEvento"
                      [useMaskBehavior]="true"
                      label="Data do Evento"
@@ -39,7 +39,7 @@
         <dxi-validation-rule type="required" message="Informe endereço do evento."></dxi-validation-rule>
       </dxi-item>
 
-      <dxi-item dataField="enderecoEvento">
+      <dxi-item dataField="descricaoEvento">
         <dx-text-box [(value)]="evento.descricaoEvento" placeholder="Defina uma descrição para o Evento"
                      label="Descrição"></dx-text-box>
         <dxi-validation-rule type="required" message="Informe a descrição do evento."></dxi-validation-rule>

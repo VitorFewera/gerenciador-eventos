@@ -50,11 +50,8 @@ export class AdmEventComponent implements OnInit {
 
   evento: EventsModel = new EventsModel();
 
-  participantesEventoData: any;
-
   customersData: any;
 
-  tipoEventoData: any;
   private eventos: EventsModel[];
 
   refreshModes: string[];
@@ -62,8 +59,6 @@ export class AdmEventComponent implements OnInit {
   refreshMode: string;
 
   requests: string[] = [];
-
-  meuPipe = DateUtils.toLocaleDate(this.evento.dataEvento);
 
   private url = 'http://localhost:3000/eventos';
 
@@ -82,6 +77,12 @@ export class AdmEventComponent implements OnInit {
       },
       remove: (key) => this.sendRequest(`${this.url}/${key}`, 'DELETE'),
     })};
+
+  tiposEventos = [
+    {id: 1, name: "Esportes Vôlei/Beach Tennis"},
+    {id: 2, name: "Churrasco"},
+    {id: 3, name: "Diversos"}
+  ];
 
     sendRequest(url: string, method: string = 'GET', body: any = {}): any {
       let result = this.http.get(url);

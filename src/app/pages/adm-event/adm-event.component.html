@@ -26,7 +26,12 @@
             <dxi-column dataField="dataEvento" caption="Data" dataType="date"></dxi-column>
             <dxi-column dataField="enderecoEvento" caption="Endereço"></dxi-column>
             <dxi-column dataField="descricaoEvento" caption="Descrição"></dxi-column>
-            <dxi-column dataField="tipoEvento" caption="Tipo do Evento" dataType="number">
+            <dxi-column dataField="tipoEvento" caption="Tipo do Evento">
+              <dxo-lookup
+                [dataSource]="tiposEventos"
+                valueExpr="id"
+                displayExpr="name"
+              ></dxo-lookup>
             </dxi-column>
           </dx-data-grid>
 

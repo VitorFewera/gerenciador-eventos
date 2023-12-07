@@ -1,53 +1,24 @@
 {
   "eventos": [
     {
-      "0": {
-        "idParticipante": 1,
-        "nome": "Vitor",
-        "setor": 1
-      },
       "participantes": [
         {
-          "idParticipante": 3,
-          "nome": "teste",
-          "setor": 3
-        },
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
+          "idParticipante": 15,
+          "nome": "hugo",
           "setor": 1
         },
         {
-          "idParticipante": 10,
-          "nome": "Hugo",
-          "setor": 4
-        },
-        {
-          "idParticipante": 3,
-          "nome": "teste",
-          "setor": 3
-        },
-        {
-          "idParticipante": 1,
-          "nome": "Vitor",
+          "idParticipante": 16,
+          "nome": "lucas",
           "setor": 1
         }
       ],
-      "id": 1,
-      "nomeEvento": "teste",
+      "nomeEvento": "Confraternização",
+      "enderecoEvento": "Fiorilli",
+      "tipoEvento": 2,
       "dataEvento": "2023-12-06T03:00:00.000Z",
-      "enderecoEvento": "teste",
-      "descricaoEvento": "teste",
-      "tipoEvento": 2
-    },
-    {
-      "participantes": [],
-      "nomeEvento": "teste 2 ",
-      "enderecoEvento": "teste",
-      "tipoEvento": 1,
-      "dataEvento": "2023-12-27T03:00:00.000Z",
-      "descricaoEvento": "teste",
-      "id": 2
+      "descricaoEvento": "Festa 2023",
+      "id": 1
     }
   ]
 }

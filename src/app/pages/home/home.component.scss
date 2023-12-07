@@ -75,6 +75,15 @@ $colorButton: transparentize(black, 0.5);
  background: #9e9e9e;
 }
 
+.buttonAdmCard{
+  border: none;
+  background-color: #9e9e9e;
+}
+
+.buttonAdmCard:hover{
+  background: white;
+}
+
 .textoCard{
   font-size: 130%;
   font-weight: bolder;

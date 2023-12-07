@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
       nome: usuario.nome,
       setor: usuario.setor,
     });
-    this.service.adicionarParticipanteEvento(this.cardEvento).subscribe();
+    this.service.adicionarParticipanteEvento(this.cardEvento).subscribe((info) => console.log('passou isso: ',info));
     this.fecharPopup();
 
     Swal.fire({
@@ -75,13 +75,36 @@ export class HomeComponent implements OnInit {
       width: 500,
       html: '<span style="font-size: 20px;">Participação aplicada com Sucesso!</span>',
     });
+  }
 
+  deixarEvento(idParticipante: number): void {
+    this.cardEvento.participantes = this.cardEvento.participantes.filter(participante => participante.idParticipante !== idParticipante);
+
+    this.service.deixarEvento(this.cardEvento).subscribe((info) => console.log('passou isso: ',info));
+    this.fecharPopup();
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      showConfirmButton: false,
+      timer: 1500,
+      width: 500,
+      html: '<span style="font-size: 20px;">Voce deixou de participar do evento!</span>',
+    });
   }
 
   administrar(){
     this.router.navigate(['/adm-event']);
   }
 
-
+  setores = [
+    {id: 1, name: 'SIA'},
+    {id: 2, name: 'SCPI'},
+    {id: 3, name: 'SIP'},
+    {id: 4, name: 'SIE e agregados'},
+    {id: 5, name: 'Juridico'},
+    {id: 6, name: 'Administrativo'},
+    {id: 7, name: 'Limpeza'},
+    {id: 8, name: 'Convidado'},
+  ]
 
 }

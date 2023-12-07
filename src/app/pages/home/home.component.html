@@ -1,98 +1,114 @@
 <div *ngIf="mostrarEvento.length else errado">
 
-<h2 class="m-5 justify-content-center">Eventos Abertos</h2>
+  <h2 class="m-5 justify-content-center">Eventos Abertos</h2>
 
-<div class="container flex-column cardEventos">
-  <div *ngFor="let evento of mostrarEvento">
-    <div class="justify-content-md-center">
-      <div class="content-block responsive-paddings shadow-lg rounded-3 mb-3"
-           [ngClass]="{'tipoUm':evento.tipoEvento == 1, 'tipoDois': evento.tipoEvento == 2, 'tipoTres': evento.tipoEvento == 3}">
-        <div class="textCard">
-          <span>{{evento.nomeEvento}}</span> <br/>
-          <span>{{evento.dataEvento | date}}</span> <br/>
-          <span>{{evento.descricaoEvento}}</span> <br/>
-          <div class="d-flex mt-3 justify-content-between">
-            <dx-button class="buttonCard" text="Participar" (click)="popup(evento)"></dx-button>
-            <dx-button class="buttonCard" [icon]="'preferences'" (click)="administrar()"></dx-button>
+  <div class="container flex-column cardEventos">
+    <div *ngFor="let evento of mostrarEvento">
+      <div class="justify-content-md-center">
+        <div class="content-block responsive-paddings shadow-lg rounded-3 mb-3"
+             [ngClass]="{'tipoUm':evento.tipoEvento == 1, 'tipoDois': evento.tipoEvento == 2, 'tipoTres': evento.tipoEvento == 3}">
+          <div class="textCard">
+            <span>{{evento.nomeEvento}}</span> <br/>
+            <span>{{evento.dataEvento | date}}</span> <br/>
+            <span>{{evento.descricaoEvento}}</span> <br/>
+            <div class="d-flex mt-3 justify-content-between">
+              <dx-button class="buttonCard" text="Participar" (click)="popup(evento)"></dx-button>
+              <dx-button class="buttonAdmCard" [icon]="'preferences'" (click)="administrar()"></dx-button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<dx-popup
-  [width]="400"
-  [height]="500"
-  [showTitle]="true"
-  title="{{cardEvento.nomeEvento}}"
-  [dragEnabled]="false"
-  [hideOnOutsideClick]="true"
-  [showCloseButton]="false"
-  container=".dx-viewport"
-  [(visible)]="popupVisible"
->
+  <dx-popup
+    [width]="600"
+    [height]="600"
+    [showTitle]="true"
+    title="{{cardEvento.nomeEvento}}"
+    [dragEnabled]="false"
+    [hideOnOutsideClick]="true"
+    [showCloseButton]="false"
+    container=".dx-viewport"
+    [(visible)]="popupVisible"
+    [resizeEnabled]="true"
+  >
 
-  <dxo-position at="center" my="center" collision="fit">
-  </dxo-position>
+    <dxo-position at="center" my="center" collision="fit">
+    </dxo-position>
 
-  <div *dxTemplate="let data of 'content'">
-    <div class="d-flex justify-content-center">
-
-      <p>
-        <span class="textoCard">{{ cardEvento.dataEvento | date }}</span>
-      </p>
-    </div>
-    <p>
-      <span class="textoCard">{{cardEvento.descricaoEvento}}.<br/>Bora ? </span>
-    </p>
-    <p class="mt-5">
-      Localização: <span class="textoCard">{{cardEvento.enderecoEvento}}</span>
-    </p>
+    <div *dxTemplate="let data of 'content'">
+      <dx-scroll-view
+        width="100%"
+        height="100%">
 
 
-    <div *ngFor="let usuario of mostrarUsuario">
-      <dxi-item dataField="participantesEvento" class="mt-5">
+      <div class="d-flex justify-content-center">
 
-        <dx-select-box
-          label="Participantes"
-          [dataSource]="cardEvento.participantes"
-          valueExpr="idParticipante"
-          displayExpr="nome"
-        >
-        </dx-select-box>
-
-      </dxi-item>
-
-
-    <div class="buttons-demo mt-5 ">
-      <div class="container">
-        <div class="buttons-column lineButton">
-          <dx-button
-            stylingMode="contained"
-            text="Partipar"
-            type="default"
-            [width]="100"
-            (click)="partiparEvento(usuario)"
-          >
-          </dx-button>
-
-          <dx-button class="fechar"
-                     text="Fechar"
-                     type="text"
-                     [width]="100"
-                     (click)="fecharPopup()"
-          >
-          </dx-button>
-        </div>
+        <p>
+          <span class="textoCard">{{ cardEvento.dataEvento | date }}</span>
+        </p>
       </div>
-    </div>
+      <p>
+        <span class="textoCard">{{cardEvento.descricaoEvento}}. </span>
+      </p>
+      <p class="mt-3">
+        Localização: <span class="textoCard">{{cardEvento.enderecoEvento}}</span>
+      </p>
 
-    </div>
-  </div>
-</dx-popup>
 
+      <div *ngFor="let usuario of mostrarUsuario">
+        <p class="mt-3"><span>Participantes desse evento: </span></p>
+        <dx-data-grid
+          id="participantes"
+          [dataSource]="cardEvento.participantes"
+          keyExpr="nome"
+          valueExpr="idParticipante"
+          [columns]="['Nome', 'Setor']"
+          [showBorders]="true"
+        >
+          <dxi-column dataField="nome"></dxi-column>
+          <dxi-column dataField="setor">
+            <dxo-lookup [dataSource]="setores" displayExpr="name" valueExpr="id">
+            </dxo-lookup>
+          </dxi-column>
+        </dx-data-grid>
+
+        <div class="buttons-demo mt-3 ">
+          <div class="container">
+            <div class="buttons-column lineButton">
+              <dx-button
+                stylingMode="contained"
+                text="Participar"
+                type="default"
+                [width]="150"
+                (click)="partiparEvento(usuario)"
+              >
+              </dx-button>
+
+              <dx-button class="limpar"
+                         text="Deixar evento"
+                         type="text"
+                         [width]="150"
+                         (click)="deixarEvento(usuario.id)">
+              </dx-button>
+
+              <dx-button class="fechar"
+                         text="Fechar"
+                         type="text"
+                         [width]="100"
+                         (click)="fecharPopup()"
+              >
+              </dx-button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </dx-scroll-view>
+    </div>
+  </dx-popup>
 
 
 </div>
