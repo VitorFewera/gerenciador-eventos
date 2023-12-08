@@ -1,6 +1,0 @@
-para rodar
-
- json-server --watch src/assets/data/event-db.json
-
-Com portas para rodar mais de um
- json-server --watch src/assets/data/event-db.json --port 3001

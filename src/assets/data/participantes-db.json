@@ -3,66 +3,10 @@
     {
       "nome": "Vitor",
       "setor": 1,
-      "user": "ferreira",
+      "user": "vitor",
       "password": "123",
       "id": 1
-    },
-    {
-      "nome": "ANCETE",
-      "setor": 2,
-      "user": "an7",
-      "password": "12",
-      "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "id": 14
-    },
-    {
-      "nome": "hugo",
-      "setor": 1,
-      "user": "hugo",
-      "password": "123",
-      "id": 15
-    },
-    {
-      "nome": "lucas",
-      "setor": 1,
-      "user": "lucas",
-      "password": "123",
-      "id": 16
     }
+
   ]
 }

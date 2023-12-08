@@ -1,9 +1,9 @@
-import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {NewEventServiceAPI, Service} from "../../shared/services/new-event.service";
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {NewEventServiceAPI} from "../../shared/services/new-event.service";
 import {DxFormComponent, DxValidatorComponent} from "devextreme-angular";
 import {EventsModel} from "../../models/events.model";
 import {Router} from "@angular/router";
-import {DateUtils} from "../../shared/pipe/date-utils";
+
 
 @Component({
   selector: 'app-new-event',
@@ -24,12 +24,13 @@ export class NewEventComponent implements OnDestroy, OnInit {
     this.labelMode = 'floating';
 
   }
+
   ngOnDestroy() {
     this.limpar();
   }
 
   @ViewChild(DxFormComponent, {static: false}) myform: DxFormComponent;
-  @ViewChild('targetValidator', { static: false }) validator: DxValidatorComponent;
+  @ViewChild('targetValidator', {static: false}) validator: DxValidatorComponent;
 
   eventService: NewEventServiceAPI;
 
@@ -45,23 +46,14 @@ export class NewEventComponent implements OnDestroy, OnInit {
 
   evento = new EventsModel();
 
-  eventos: Array<EventsModel> = new Array<EventsModel>();
-
   formData = {};
 
-
   cadastroEvento(evento: EventsModel) {
-
-    //Fazer com que os campo do formulario venha sem validação
     if (!this.myform.instance.validate().isValid) {
       return
     }
-
-   // evento.dataEvento = DateUtils.toLocaleDate(evento.dataEvento);
-
     this.newEventServiceAPI.cadastroEvento(evento).subscribe(
       () => {
-        console.log('PASSOU', evento);
         this.sair();
       });
   }
@@ -75,6 +67,7 @@ export class NewEventComponent implements OnDestroy, OnInit {
     this.evento.enderecoEvento = '';
     this.evento.tipoEvento = null;
     this.evento.dataEvento = null;
+    this.evento.descricaoEvento = '';
   }
 
 }

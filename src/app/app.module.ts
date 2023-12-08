@@ -16,7 +16,6 @@ import {
     DxSelectBoxModule, DxTextBoxModule,
     DxTreeListModule
 } from "devextreme-angular";
-import { EventManagerComponent } from './pages/event-manager/event-manager.component';
 import { AdmEventComponent } from './pages/adm-event/adm-event.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
@@ -31,7 +30,6 @@ registerLocaleData(localePt, 'pt-BR');
   declarations: [
     AppComponent,
     NewEventComponent,
-    EventManagerComponent,
     AdmEventComponent
   ],
     imports: [

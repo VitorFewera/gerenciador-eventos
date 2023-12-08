@@ -5,11 +5,8 @@
 <div class="container">
   <div class="content-block dx-card responsive-paddings row">
     <div class="row justify-content-md-center">
-
       <div *ngFor="let usuario of mostrarUsuario">
-
       <dx-form [colCount]="2" [labelMode]="labelFloating" >
-
         <dxi-item >
           <dx-text-box [value]="usuario.nome" [readOnly]="true" label="Nome do Usuario"></dx-text-box>
         </dxi-item>
@@ -29,7 +26,6 @@
         <dxi-item>
           <dx-text-box [value]="usuario.user" [readOnly]="true"  label="Login de acesso"></dx-text-box>
         </dxi-item>
-
 
       </dx-form>
 

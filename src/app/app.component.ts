@@ -1,5 +1,5 @@
-import { Component, enableProdMode, HostBinding } from '@angular/core';
-import { AuthService, ScreenService, AppInfoService } from './shared/services';
+import {Component, enableProdMode, HostBinding} from '@angular/core';
+import {AuthService, ScreenService, AppInfoService} from './shared/services';
 import {loadMessages, locale} from 'devextreme/localization';
 import ptMessages from 'devextreme/localization/messages/pt.json';
 
@@ -12,7 +12,7 @@ if (!/localhost/.test(document.location.host)) {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent  {
+export class AppComponent {
   @HostBinding('class') get getClass() {
     return Object.keys(this.screen.sizes).filter(cl => this.screen.sizes[cl]).join(' ');
   }
@@ -26,8 +26,6 @@ export class AppComponent  {
 
 
   isAuthenticated() {
-   // console.log('chegou aqui', this.authService.loggedIn);
-
     return this.authService.loggedIn;
   }
 }

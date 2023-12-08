@@ -5,7 +5,7 @@ export class AppInfoService {
   constructor() {}
 
   public get title() {
-    return 'Gerenciador Eventos';
+    return 'Gerenciador de Eventos';
   }
 
   public get currentYear() {

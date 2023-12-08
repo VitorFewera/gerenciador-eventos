@@ -27,15 +27,21 @@ export class HomeComponent implements OnInit {
 
   texto: string = 'Informe seus dados: ';
 
-  navegar: any = [];
+  setores = [
+    {id: 1, name: 'SIA'},
+    {id: 2, name: 'SCPI'},
+    {id: 3, name: 'SIP'},
+    {id: 4, name: 'SIE e agregados'},
+    {id: 5, name: 'Juridico'},
+    {id: 6, name: 'Administrativo'},
+    {id: 7, name: 'Limpeza'},
+    {id: 8, name: 'Convidado'},
+  ]
 
   constructor(private service: NewEventServiceAPI, private authService: AuthService, private router: Router) {
     const urlString = localStorage.getItem('user');
-    console.log(urlString);
     const url = JSON.parse(urlString)
-    console.log('log do component, antes do service: ',url)
     this.authService.exibirUsuario(url).subscribe((usuario: ParticipantesModel[]) => {
-      console.log('log do component: ',usuario);
       this.mostrarUsuario = usuario;
     })
 
@@ -50,7 +56,6 @@ export class HomeComponent implements OnInit {
 
   popup(eventoSelecionado: any) {
     this.cardEvento = eventoSelecionado;
-    console.log(eventoSelecionado)
     this.popupVisible = true;
   }
 
@@ -64,7 +69,7 @@ export class HomeComponent implements OnInit {
       nome: usuario.nome,
       setor: usuario.setor,
     });
-    this.service.adicionarParticipanteEvento(this.cardEvento).subscribe((info) => console.log('passou isso: ',info));
+    this.service.adicionarParticipanteEvento(this.cardEvento).subscribe();
     this.fecharPopup();
 
     Swal.fire({
@@ -79,9 +84,9 @@ export class HomeComponent implements OnInit {
 
   deixarEvento(idParticipante: number): void {
     this.cardEvento.participantes = this.cardEvento.participantes.filter(participante => participante.idParticipante !== idParticipante);
-
-    this.service.deixarEvento(this.cardEvento).subscribe((info) => console.log('passou isso: ',info));
+    this.service.deixarEvento(this.cardEvento).subscribe();
     this.fecharPopup();
+
     Swal.fire({
       position: "center",
       icon: "warning",
@@ -96,15 +101,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/adm-event']);
   }
 
-  setores = [
-    {id: 1, name: 'SIA'},
-    {id: 2, name: 'SCPI'},
-    {id: 3, name: 'SIP'},
-    {id: 4, name: 'SIE e agregados'},
-    {id: 5, name: 'Juridico'},
-    {id: 6, name: 'Administrativo'},
-    {id: 7, name: 'Limpeza'},
-    {id: 8, name: 'Convidado'},
-  ]
+
 
 }

@@ -15,7 +15,6 @@ import {
 import {NewEventComponent} from "./pages/new-event/new-event.component";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {EventManagerComponent} from "./pages/event-manager/event-manager.component";
 import {AdmEventComponent} from "./pages/adm-event/adm-event.component";
 import {MatTabsModule} from "@angular/material/tabs";
 
@@ -49,11 +48,6 @@ const routes: Routes = [
   {
     path: 'adm-event',
     component: AdmEventComponent,
-    canActivate: [AuthGuardService]
-  },
-  {
-    path: 'event-manager',
-    component: EventManagerComponent,
     canActivate: [AuthGuardService]
   },
   {

@@ -30,12 +30,10 @@ export class LoginFormComponent {
     this.authService.logIn(this.user.user, this.user.password).subscribe(
       (retorno) => {
         if (retorno.passou) {
-          console.log('Login bem-sucedido', retorno);
-          console.log('o loggedIn chega assim: ', this.authService.loggedIn);
           this.router.navigate(['/home']);
         } else {
-          console.log('Login falhou', retorno);
           this.authService.retornoLog = null;
+
           const Toast = Swal.mixin({
             toast: true,
             position: "top-end",

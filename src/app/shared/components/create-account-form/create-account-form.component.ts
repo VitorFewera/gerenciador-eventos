@@ -1,14 +1,15 @@
 import {CommonModule} from '@angular/common';
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, ViewChild} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
 import {DxFormModule} from 'devextreme-angular/ui/form';
 import {DxLoadIndicatorModule} from 'devextreme-angular/ui/load-indicator';
 import {
   DxButtonModule,
-  DxFileUploaderModule,
+  DxFileUploaderModule, DxFormComponent,
   DxProgressBarModule,
   DxSelectBoxModule,
-  DxTextBoxModule
+  DxTextBoxModule,
+  DxValidatorComponent
 } from "devextreme-angular";
 import {FormsModule} from "@angular/forms";
 import {DxoTextModule} from "devextreme-angular/ui/nested";
@@ -53,16 +54,20 @@ export class CreateAccountFormComponent {
     this.passMode = 'password';
   }
 
-
   passwordTextBoxOptions = {
     mode: 'password'
   }
 
+  @ViewChild(DxFormComponent, {static: false}) myform: DxFormComponent;
 
   cadastrarParticipante(participante: ParticipantesModel){
+    if (!this.myform.instance.validate().isValid) {
+      return
+    }
     console.log(participante);
     this.service.adicionarParticipante(participante).subscribe(
       () =>  console.log(participante) );
+
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -78,6 +83,7 @@ export class CreateAccountFormComponent {
       icon: "success",
       title: "Usuario cadastrado!"
     });
+
     this.router.navigate(['/login-form'])
   }
 

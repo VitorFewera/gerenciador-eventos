@@ -1,0 +1,6 @@
+rodar banco de eventos:
+json-server --watch src/assets/data/event-db.json
+
+rodar banco de usuarios:
+json-server --watch src/assets/data/participantes-db.json --port 3001
+

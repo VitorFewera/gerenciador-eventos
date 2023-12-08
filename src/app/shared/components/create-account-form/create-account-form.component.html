@@ -1,15 +1,14 @@
 <form class="create-account-form" xmlns="http://www.w3.org/1999/html">
 
-  <dx-form [formData]="formData" [labelMode]="labelFloating"
+  <dx-form [formData]="formData" [labelMode]="labelFloating" id="dx-form"
            class="container">
 
     <dxi-item dataField="nome">
       <dx-text-box [(value)]="user.nome" label="Nome"></dx-text-box>
       <dxi-validation-rule type="required" message="o campo não pode ficar em branco"></dxi-validation-rule>
-      <dxi-validation-rule type="required" message="Informe seu nome"></dxi-validation-rule>
     </dxi-item>
 
-    <dxi-item dataField="setor">
+    <dxi-item dataField="setor" name="setor">
       <dx-select-box
         label="Defina seu Setor"
         [(value)]="user.setor"
@@ -18,20 +17,17 @@
         valueExpr="id"
         placeholder="Selecione um setor:">
       </dx-select-box>
-      <dxi-validation-rule type="text" message="o campo não pode ficar em branco"></dxi-validation-rule>
       <dxi-validation-rule type="required" message="Informe o seu setor."></dxi-validation-rule>
     </dxi-item>
 
-    <dxi-item dataField="user" editorType="dxTextBox">
+    <dxi-item dataField="user">
       <dx-text-box [(value)]="user.user" label="Login" name="login"></dx-text-box>
-      <dxi-validation-rule type="text" message="o campo não pode ficar em branco"></dxi-validation-rule>
       <dxi-validation-rule type="required" message="Informe um login"></dxi-validation-rule>
     </dxi-item>
 
-    <dxi-item dataField="password" editorType="dxTextBox">
+    <dxi-item dataField="password">
       <dx-text-box [(value)]="user.password" name="senha" [mode]="'password'"
                    label="Senha"></dx-text-box>
-      <dxi-validation-rule type="text" message="o campo não pode ficar em branco"></dxi-validation-rule>
       <dxi-validation-rule type="required" message="Informe uma senha Valida!"></dxi-validation-rule>
     </dxi-item>
 

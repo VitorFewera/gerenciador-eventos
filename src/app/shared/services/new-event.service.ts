@@ -4,10 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {EventsModel} from "../../models/events.model";
 import {ParticipantesEventsModel} from "../../models/participantes.model";
 import {ParticipantesModel} from "../../models/ParticipantesModel.model";
-import {switchMap} from 'rxjs/operators';
-
-import {cloneDeep} from 'lodash';
-
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +19,7 @@ export class NewEventServiceAPI {
   constructor(private httpClient: HttpClient) {
   }
 
-  //teste api
+
   retornoEvento(): Observable<EventsModel[]> {
     return this.httpClient.get<EventsModel[]>(this.apiEventos);
   }
